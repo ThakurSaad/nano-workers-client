@@ -3,7 +3,7 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
-import SectionTitle from "../../../components/SectionTitle";
+import SectionTitle from "../../components/SectionTitle";
 import {
   FaSignInAlt,
   FaWrench,

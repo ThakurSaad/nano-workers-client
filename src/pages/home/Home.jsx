@@ -1,6 +1,8 @@
 import Banner from "./Banner";
 import Featured from "./Featured";
-import HowItWorks from "./howItWorks/HowItWorks";
+import HowItWorks from "./HowItWorks";
+import Testimonials from "./Testimonials";
+import TopEarners from "./TopEarners";
 
 const Home = () => {
   return (
@@ -8,6 +10,8 @@ const Home = () => {
       <Banner />
       <Featured />
       <HowItWorks />
+      <TopEarners />
+      <Testimonials/>
     </div>
   );
 };

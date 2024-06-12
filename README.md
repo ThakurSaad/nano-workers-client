@@ -3,3 +3,4 @@
 - daisyUi
 - react-icons
 - react-vertical-timeline-component
+- swiper js

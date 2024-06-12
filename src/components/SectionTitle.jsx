@@ -6,7 +6,9 @@ const SectionTitle = ({ heading, subHeading }) => {
           {heading}
         </h2>
       )}
-      <h3 className="text-xl md:text-2xl font-semibold my-4">{subHeading}</h3>
+      {subHeading && (
+        <h3 className="text-xl md:text-2xl font-semibold my-4">{subHeading}</h3>
+      )}
     </div>
   );
 };
