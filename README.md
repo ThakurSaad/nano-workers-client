@@ -1,3 +1,5 @@
 - react-router-dom
 - tailwind
 - daisyUi
+- react-icons
+- react-vertical-timeline-component
