@@ -14,7 +14,7 @@ const Navbar = () => {
         <Link to="/login">Login</Link>
       </li>
       <li className="bg-customOrange rounded font-medium text-lg text-white my-1 lg:my-0 lg:px-4">
-        <Link>Register</Link>
+        <Link to="/register">Register</Link>
       </li>
     </>
   );

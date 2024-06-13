@@ -1,12 +1,12 @@
-import SectionTitle from "../../components/SectionTitle";
-import loginImage from "../../assets/login.jpg";
-import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import SocialLogin from "./SocialLogin";
 import { FcGoogle } from "react-icons/fc";
+import SocialLogin from "./SocialLogin";
+import loginImage from "../../assets/login.jpg";
 import { FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import SectionTitle from "../../components/SectionTitle";
 
-const Login = () => {
+const Register = () => {
   const {
     register,
     handleSubmit,
@@ -23,9 +23,9 @@ const Login = () => {
         <div className="md:w-1/2">
           <div className="text-center mt-10 md:mt-20 mb-10">
             <SectionTitle
-              heading={"Welcome Back"}
+              heading={"Join Us Today!"}
               subHeading={
-                "Please log in to continue managing your tasks and projects"
+                "Create an account to start organizing your tasks and collaborating with your team."
               }
             />
           </div>
@@ -34,6 +34,36 @@ const Login = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col items-center"
             >
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="name"
+                  placeholder="Your Name"
+                  className="input input-bordered bg-slate-100 focus:bg-white w-full max-w-sm"
+                  {...register("name", {
+                    required: { value: true, message: "Name is required" },
+                    minLength: {
+                      value: 4,
+                      message: "Name must be more than 3 characters",
+                    },
+                  })}
+                />
+                <div className="label">
+                  {errors.name?.type === "required" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.name.message}
+                    </span>
+                  )}
+                  {errors.name?.type === "minLength" && (
+                    <span className="label-text-alt text-red-500">
+                      {errors.name.message}
+                    </span>
+                  )}
+                </div>
+              </div>
+
               <div className="form-control w-full max-w-xs">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -101,19 +131,16 @@ const Login = () => {
             </form>
             <div className="text-center mt-4">
               <small>
-                New to Nano Workers ?{" "}
-                <Link
-                  className="text-customOrange font-semibold"
-                  to="/register"
-                >
-                  Register
+                Already joined Us?{" "}
+                <Link className="text-customOrange font-semibold" to="/login">
+                  Login
                 </Link>
               </small>
             </div>
             <div className="divider text-sm w-full max-w-xs mx-auto">OR</div>
             <div className="w-full max-w-xs mx-auto">
-              <SocialLogin icon={<FcGoogle />} text={"Login With Google"} />
-              <SocialLogin icon={<FaGithub />} text={"Login With Github"} />
+              <SocialLogin icon={<FcGoogle />} text={"Register With Google"} />
+              <SocialLogin icon={<FaGithub />} text={"Register With Github"} />
             </div>
           </div>
         </div>
@@ -131,4 +158,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
