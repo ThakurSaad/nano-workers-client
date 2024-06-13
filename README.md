@@ -5,3 +5,5 @@
 - react-vertical-timeline-component
 - swiper js
 - react-hook-form
+- firebase
+- react-spinners
