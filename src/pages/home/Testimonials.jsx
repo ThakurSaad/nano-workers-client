@@ -16,7 +16,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <div>
+    <section>
       <div className="text-center mt-10 md:mt-20 mb-10">
         <SectionTitle
           heading={"Testimonials"}
@@ -61,7 +61,7 @@ const Testimonials = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 

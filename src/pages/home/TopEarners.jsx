@@ -20,7 +20,7 @@ const TopEarners = () => {
   const topWorkers = workers.sort((a, b) => b.coin - a.coin).slice(0, 6);
 
   return (
-    <div>
+    <section>
       <div className="text-center mt-10 md:mt-20 mb-10">
         <SectionTitle heading={"Workers of The Month"} />
       </div>
@@ -78,7 +78,7 @@ const TopEarners = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   );
 };
 

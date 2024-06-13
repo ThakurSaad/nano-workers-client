@@ -4,3 +4,4 @@
 - react-icons
 - react-vertical-timeline-component
 - swiper js
+- react-hook-form

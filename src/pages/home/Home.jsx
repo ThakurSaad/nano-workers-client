@@ -6,13 +6,13 @@ import TopEarners from "./TopEarners";
 
 const Home = () => {
   return (
-    <div className="max-w-screen-xl mx-auto px-2 xl:px-0">
+    <section className="max-w-screen-xl mx-auto px-2 xl:px-0">
       <Banner />
       <Featured />
       <HowItWorks />
       <TopEarners />
       <Testimonials/>
-    </div>
+    </section>
   );
 };
 

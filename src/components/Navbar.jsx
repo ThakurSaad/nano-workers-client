@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link>Watch Demo</Link>
       </li>
       <li className="bg-customOrange rounded font-medium text-lg text-white lg:mr-4 my-1 lg:my-0 lg:px-4">
-        <Link>Login</Link>
+        <Link to="/login">Login</Link>
       </li>
       <li className="bg-customOrange rounded font-medium text-lg text-white my-1 lg:my-0 lg:px-4">
         <Link>Register</Link>
@@ -20,7 +20,7 @@ const Navbar = () => {
   );
 
   return (
-    <div>
+    <nav>
       <div className="navbar fixed max-w-screen-2xl z-10">
         <div className="navbar-start">
           <div className="dropdown">
@@ -55,7 +55,7 @@ const Navbar = () => {
           <ul className="menu text-lg menu-horizontal px-1">{menuItems}</ul>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
