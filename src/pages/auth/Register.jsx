@@ -15,7 +15,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, loading, setLoading } = useAuth();
+  const { createUser, updateUserProfile, loading, setLoading } = useAuth();
   const [authError, setAuthError] = useState("");
 
   const errorElement = (
@@ -24,18 +24,31 @@ const Register = () => {
     </p>
   );
 
+  const registerUser = async (email, password) => {
+    try {
+      await createUser(email, password);
+    } catch (err) {
+      setAuthError(err.message);
+      setLoading(false);
+    }
+  };
+
+  const profileUpdate = async (name) => {
+    try {
+      await updateUserProfile(name);
+    } catch (err) {
+      setAuthError(err.message);
+      setLoading(false);
+    }
+  };
+
   const onSubmit = async (data) => {
     try {
-      const res = await createUser(data.email, data.password);
-      if (res) {
-        setLoading(false);
-        console.log(res);
-      }
-    } catch (error) {
-      if (error) {
-        setLoading(false);
-        setAuthError(error.message);
-      }
+      // await registerUser(data.email, data.password);
+      // await profileUpdate(data.name);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -44,7 +57,7 @@ const Register = () => {
       <div className="md:flex md:items-center">
         <div className="md:w-1/2">
           {loading ? (
-            <Loader />
+            <Loader height="h-screen" />
           ) : (
             <>
               <div className="text-center mt-10 md:mt-20 mb-10">
@@ -152,10 +165,48 @@ const Register = () => {
                       )}
                     </div>
                   </div>
+
+                  <div className="form-control w-full max-w-xs">
+                    <p>Select your role</p>
+                    <div className="flex mt-3 mb-1">
+                      <input
+                        {...register("radio", {
+                          required: {
+                            value: true,
+                            message: "Role is required",
+                          },
+                        })}
+                        type="radio"
+                        value="worker"
+                        className="radio mr-2"
+                        id="worker"
+                      />
+                      <label htmlFor="worker">Worker</label>
+                      <input
+                        {...register("radio", {
+                          required: {
+                            value: true,
+                            message: "Role is required",
+                          },
+                        })}
+                        type="radio"
+                        value="taskCreator"
+                        className="radio ml-8 mr-2"
+                        id="taskCreator"
+                      />
+                      <label htmlFor="taskCreator">Task Creator</label>
+                    </div>
+                    {errors.radio?.type === "required" && (
+                      <span className="label-text-alt text-red-500">
+                        {errors.radio.message}
+                      </span>
+                    )}
+                  </div>
+
                   <input
                     className="btn bg-gradient-to-r from-customOrange to-[#ffb347] uppercase text-white border-0 w-full max-w-xs mt-3"
                     type="submit"
-                    value="login"
+                    value="register"
                   />
                 </form>
                 <div>{errorElement}</div>
