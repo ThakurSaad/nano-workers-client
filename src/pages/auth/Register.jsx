@@ -1,7 +1,5 @@
-import { FcGoogle } from "react-icons/fc";
 import SocialLogin from "./SocialLogin";
 import loginImage from "../../assets/login.jpg";
-import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../components/SectionTitle";
@@ -29,7 +27,6 @@ const Register = () => {
       await createUser(email, password);
     } catch (err) {
       setAuthError(err.message);
-      setLoading(false);
     }
   };
 
@@ -38,17 +35,18 @@ const Register = () => {
       await updateUserProfile(name);
     } catch (err) {
       setAuthError(err.message);
-      setLoading(false);
     }
   };
 
   const onSubmit = async (data) => {
     try {
-      // await registerUser(data.email, data.password);
-      // await profileUpdate(data.name);
-      console.log(data);
+      setAuthError("");
+      await registerUser(data.email, data.password);
+      await profileUpdate(data.name);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -225,14 +223,7 @@ const Register = () => {
                   OR
                 </div>
                 <div className="w-full max-w-xs mx-auto">
-                  <SocialLogin
-                    icon={<FcGoogle />}
-                    text={"Register With Google"}
-                  />
-                  <SocialLogin
-                    icon={<FaGithub />}
-                    text={"Register With Github"}
-                  />
+                  <SocialLogin />
                 </div>
               </div>
             </>

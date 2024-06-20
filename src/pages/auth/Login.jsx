@@ -3,8 +3,6 @@ import loginImage from "../../assets/login.jpg";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Loader from "../../components/Loader";
@@ -26,15 +24,12 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await login(data.email, data.password);
-      if (res) {
-        setLoading(false);
-      }
+      setAuthError("");
+      await login(data.email, data.password);
     } catch (error) {
-      if (error) {
-        setAuthError(error.message);
-        setLoading(false);
-      }
+      setAuthError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -143,8 +138,7 @@ const Login = () => {
                   OR
                 </div>
                 <div className="w-full max-w-xs mx-auto">
-                  <SocialLogin icon={<FcGoogle />} text={"Login With Google"} />
-                  <SocialLogin icon={<FaGithub />} text={"Login With Github"} />
+                  <SocialLogin />
                 </div>
               </div>
             </>
