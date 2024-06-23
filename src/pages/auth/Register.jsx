@@ -1,11 +1,13 @@
 import SocialLogin from "./SocialLogin";
 import loginImage from "../../assets/login.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SectionTitle from "../../components/SectionTitle";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../components/Loader";
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const {
@@ -15,6 +17,8 @@ const Register = () => {
   } = useForm();
   const { createUser, updateUserProfile, loading, setLoading } = useAuth();
   const [authError, setAuthError] = useState("");
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const errorElement = (
     <p className="text-center mt-2">
@@ -38,11 +42,39 @@ const Register = () => {
     }
   };
 
+  const saveUserToDB = async (user) => {
+    try {
+      const res = await axiosPublic.post("/users", user);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Thank you for joining us",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const onSubmit = async (data) => {
     try {
       setAuthError("");
       await registerUser(data.email, data.password);
       await profileUpdate(data.name);
+
+      const user = {
+        display_name: data.name,
+        user_email: data.email,
+        photo_url: "",
+        role: data.role,
+        coin: data.role === "task-creator" ? 50 : 10,
+      };
+
+      await saveUserToDB(user);
     } catch (err) {
       console.log(err);
     } finally {
@@ -168,7 +200,7 @@ const Register = () => {
                     <p>Select your role</p>
                     <div className="flex mt-3 mb-1">
                       <input
-                        {...register("radio", {
+                        {...register("role", {
                           required: {
                             value: true,
                             message: "Role is required",
@@ -181,18 +213,18 @@ const Register = () => {
                       />
                       <label htmlFor="worker">Worker</label>
                       <input
-                        {...register("radio", {
+                        {...register("role", {
                           required: {
                             value: true,
                             message: "Role is required",
                           },
                         })}
                         type="radio"
-                        value="taskCreator"
+                        value="task-creator"
                         className="radio ml-8 mr-2"
-                        id="taskCreator"
+                        id="task-creator"
                       />
-                      <label htmlFor="taskCreator">Task Creator</label>
+                      <label htmlFor="task-creator">Task Creator</label>
                     </div>
                     {errors.radio?.type === "required" && (
                       <span className="label-text-alt text-red-500">

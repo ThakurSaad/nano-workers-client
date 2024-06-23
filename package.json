@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.45.1",
+    "axios": "^1.7.2",
     "firebase": "^10.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -18,6 +20,7 @@
     "react-router-dom": "^6.23.1",
     "react-spinners": "^0.13.8",
     "react-vertical-timeline-component": "^3.6.0",
+    "sweetalert2": "^11.12.0",
     "swiper": "^11.1.4"
   },
   "devDependencies": {

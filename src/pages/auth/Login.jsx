@@ -1,11 +1,12 @@
 import SectionTitle from "../../components/SectionTitle";
 import loginImage from "../../assets/login.jpg";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigation } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
 import Loader from "../../components/Loader";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -15,6 +16,7 @@ const Login = () => {
   } = useForm();
   const { login, loading, setLoading } = useAuth();
   const [authError, setAuthError] = useState("");
+  const navigate = useNavigation();
 
   const errorElement = (
     <p className="text-center mt-2">
@@ -26,6 +28,15 @@ const Login = () => {
     try {
       setAuthError("");
       await login(data.email, data.password);
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Welcome Back",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate("/");
     } catch (error) {
       setAuthError(error.message);
     } finally {

@@ -7,3 +7,6 @@
 - react-hook-form
 - firebase
 - react-spinners
+- @tanstack/react-query
+- axios
+- sweetalert2
