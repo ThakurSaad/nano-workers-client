@@ -1,7 +1,7 @@
 import SectionTitle from "../../components/SectionTitle";
 import loginImage from "../../assets/login.jpg";
 import { useForm } from "react-hook-form";
-import { Link, useNavigation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
@@ -16,7 +16,7 @@ const Login = () => {
   } = useForm();
   const { login, loading, setLoading } = useAuth();
   const [authError, setAuthError] = useState("");
-  const navigate = useNavigation();
+  const navigate = useNavigate();
 
   const errorElement = (
     <p className="text-center mt-2">
