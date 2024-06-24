@@ -8,6 +8,7 @@ import MySubmissions from "../pages/dashboard/MySubmissions";
 import Withdrawals from "../pages/dashboard/Withdrawals";
 import Profile from "../pages/dashboard/Profile";
 import TaskList from "../pages/dashboard/tasklist/TaskList";
+import TaskDetails from "../pages/dashboard/tasklist/TaskDetails";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: "taskList",
         element: <TaskList />,
+      },
+      {
+        path: "taskList/:taskId",
+        element: <TaskDetails />,
       },
       {
         path: "mySubmissions",

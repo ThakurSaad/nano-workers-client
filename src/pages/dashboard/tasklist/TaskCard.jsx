@@ -1,6 +1,8 @@
 import { FaTag } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const TaskCard = ({
+  _id,
   task_title,
   task_count,
   creator_name,
@@ -8,6 +10,8 @@ const TaskCard = ({
   completion_date,
   payable_amount,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-white rounded-lg border hover:shadow-md duration-75 py-6 mb-6 w-full">
       <h2 className="text-xl font-semibold uppercase tracking-wide px-6 mb-4">
@@ -40,7 +44,10 @@ const TaskCard = ({
           <span className="text-orange-600 text-lg font-semibold">
             ${payable_amount}
           </span>
-          <button className="bg-orange-600 text-white px-4 py-2 rounded">
+          <button
+            onClick={() => navigate(`${_id}`)}
+            className="bg-orange-600 text-white px-4 py-2 rounded"
+          >
             Details
           </button>
         </div>

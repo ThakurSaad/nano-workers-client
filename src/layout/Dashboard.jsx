@@ -9,7 +9,7 @@ const Dashboard = () => {
       <NavbarUpper />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content m-2 lg:m-4">
+        <div className="drawer-content m-4 md:mx-8">
           {/* Page content */}
           <Outlet />
         </div>

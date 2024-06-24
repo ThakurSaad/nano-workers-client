@@ -1,14 +1,19 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
 import TaskCard from "./TaskCard";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const TaskList = () => {
-  const [taskList, setTaskList] = useState([]);
-  useEffect(() => {
-    fetch("/tasks.json")
-      .then((res) => res.json())
-      .then((data) => setTaskList(data));
-  }, []);
+  const axiosPublic = useAxiosPublic();
+
+  const { data: taskList = [] } = useQuery({
+    queryKey: ["taskList"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/taskList");
+      return res.data;
+    },
+  });
+
   return (
     <section>
       <div>
@@ -18,6 +23,7 @@ const TaskList = () => {
         {taskList.map((task) => (
           <TaskCard
             key={task._id}
+            _id={task._id}
             task_title={task.task_title}
             task_count={task.task_count}
             published_date={task.published_date}
