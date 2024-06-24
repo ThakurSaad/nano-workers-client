@@ -19,7 +19,7 @@ const Dashboard = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu p-4 w-80 min-h-full bg-orange-50 text-black space-y-2">
+          <ul className="menu p-4 w-64 min-h-full bg-orange-50 text-black space-y-2">
             {/* navigation  */}
             <DashboardNavItems />
           </ul>

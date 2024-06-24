@@ -8,21 +8,27 @@ import {
   FaMoneyBillWave,
   FaPlus,
   FaTasks,
+  FaUser,
   FaUserCog,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const DashboardNavItems = () => {
-  //   const isAdmin = true;
   return (
     <>
-      {/* worker */}
       <li>
         <NavLink to="/">
           <FaHome className="text-lg" />
           Home
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/profile">
+          <FaUser className="text-lg" />
+          My Profile
+        </NavLink>
+      </li>
+      {/* worker */}
       <li>
         <NavLink to="/dashboard/taskList">
           <FaListAlt className="text-lg" />
