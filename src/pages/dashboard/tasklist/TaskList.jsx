@@ -2,17 +2,22 @@ import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
 import TaskCard from "./TaskCard";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Loader from "../../../components/Loader";
 
 const TaskList = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: taskList = [] } = useQuery({
+  const { data: taskList = [], isLoading } = useQuery({
     queryKey: ["taskList"],
     queryFn: async () => {
       const res = await axiosPublic.get("/taskList");
       return res.data;
     },
   });
+
+  if (isLoading) {
+    return <Loader height="min-h-screen" />;
+  }
 
   return (
     <section>
