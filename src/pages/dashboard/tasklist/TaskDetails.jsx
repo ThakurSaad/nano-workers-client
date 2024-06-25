@@ -28,10 +28,11 @@ const TaskDetails = () => {
     completion_date,
     payable_amount,
     creator_name,
+    creator_email,
   } = task;
 
   if (isLoading) {
-    return <Loader height="min-h-screen"/>;
+    return <Loader height="min-h-screen" />;
   }
 
   return (
@@ -42,6 +43,7 @@ const TaskDetails = () => {
       <div>
         <DetailsAndSubmissionForm
           _id={_id}
+          task_title={task_title}
           task_detail={task_detail}
           task_count={task_count}
           submission_info={submission_info}
@@ -49,6 +51,7 @@ const TaskDetails = () => {
           completion_date={completion_date}
           payable_amount={payable_amount}
           creator_name={creator_name}
+          creator_email={creator_email}
         />
       </div>
       <div></div>

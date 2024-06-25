@@ -6,9 +6,15 @@ import {
 } from "react-icons/fa";
 import profile from "../../../assets/profile.png";
 import { useForm } from "react-hook-form";
+import useAuth from "../../../hooks/useAuth";
+import { useState } from "react";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Loader from "../../../components/Loader";
+import Swal from "sweetalert2";
 
 const DetailsAndSubmissionForm = ({
   _id,
+  task_title,
   task_detail,
   task_count,
   submission_info,
@@ -16,15 +22,76 @@ const DetailsAndSubmissionForm = ({
   completion_date,
   payable_amount,
   creator_name,
+  creator_email,
 }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
+  const { user } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const axiosPrivate = useAxiosPrivate();
+
+  if (loading) {
+    return <Loader height="min-h-screen" />;
+  }
+
+  const saveSubmission = async (submission) => {
+    try {
+      const res = await axiosPrivate.post("/submission", submission);
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title:
+            "Your submission has been sent to the client. Please wait for confirmation.",
+          showConfirmButton: false,
+          timer: 5000,
+        });
+      }
+    } catch (err) {
+      if (err) {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${err.message}. Please try again`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    }
+  };
 
   const onSubmit = async (data) => {
-    console.log(data);
+    function getCurrentDate() {
+      const options = { year: "numeric", month: "short", day: "2-digit" };
+      return new Date().toLocaleDateString("en-US", options);
+    }
+    try {
+      setLoading(true);
+      const submission = {
+        task_id: _id,
+        task_title,
+        task_detail,
+        payable_amount,
+        worker_email: user.email,
+        submission_details: data.submission_details,
+        worker_name: user.displayName,
+        creator_name,
+        creator_email,
+        current_date: getCurrentDate(),
+        status: "pending",
+      };
+
+      await saveSubmission(submission);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      reset();
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,6 +114,7 @@ const DetailsAndSubmissionForm = ({
             >
               <div className="form-control w-full">
                 <textarea
+                  aria-label="submission_details"
                   placeholder="Enter details here"
                   className="w-full border rounded p-4 h-36"
                   {...register("submission_details", {
@@ -63,6 +131,7 @@ const DetailsAndSubmissionForm = ({
               </div>
 
               <input
+                disabled={loading}
                 className="btn bg-gradient-to-r from-customOrange to-[#ffb347] uppercase text-white border-0 w-full mt-3"
                 type="submit"
                 value="Submit"
