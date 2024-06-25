@@ -18,7 +18,7 @@ const MySubmissions = () => {
   });
 
   if (isLoading) {
-    return <Loader />;
+    return <Loader height="min-h-full" />;
   }
 
   return (

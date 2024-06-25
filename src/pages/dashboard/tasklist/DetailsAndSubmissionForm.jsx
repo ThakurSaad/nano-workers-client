@@ -35,7 +35,7 @@ const DetailsAndSubmissionForm = ({
   const axiosPrivate = useAxiosPrivate();
 
   if (loading) {
-    return <Loader height="min-h-screen" />;
+    return <Loader height="min-h-full" />;
   }
 
   const saveSubmission = async (submission) => {
@@ -103,7 +103,7 @@ const DetailsAndSubmissionForm = ({
         <p className="text-gray-500 mb-4">{submission_info}</p>
         <hr />
         {/* form */}
-        <div className="my-4">
+        <div className="my-4 bg-gray-100 rounded px-4 py-4 md:py-12">
           <h3 className="text-xl mb-4">
             Please provide the necessary proof of job completion
           </h3>

@@ -16,7 +16,7 @@ const TaskList = () => {
   });
 
   if (isLoading) {
-    return <Loader height="min-h-screen" />;
+    return <Loader height="min-h-full" />;
   }
 
   return (

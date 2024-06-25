@@ -1,23 +1,12 @@
 import { BsList } from "react-icons/bs";
 import logo from "../../../assets/nano-worker-logo.svg";
 import { FaBell, FaCoins } from "react-icons/fa";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import { IoIosArrowDropdown } from "react-icons/io";
+import useUser from "../../../hooks/useUser";
 
 const NavbarUpper = () => {
-  const axiosPrivate = useAxiosPrivate();
-  const { user } = useAuth();
+  const { user } = useUser();
 
-  const { data: currentUser = {} } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const res = await axiosPrivate.get(`/user/${user?.email}`);
-      return res.data;
-    },
-  });
-  console.log(currentUser);
   return (
     <div>
       <div className="navbar bg-orange-50 text-black">
@@ -40,9 +29,9 @@ const NavbarUpper = () => {
               className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-28 bg-orange-50`}
             >
               <small className="text-sm">Natasha</small>
-              <small className="text-sm">{currentUser.role}</small>
+              <small className="text-sm">{user.role}</small>
               <small className="text-sm flex flex-row">
-                {currentUser.coin}
+                {user.coin}
                 <span>
                   <FaCoins className="pl-2 text-2xl" />
                 </span>
