@@ -13,7 +13,7 @@ const Dashboard = () => {
           {/* Page content */}
           <Outlet />
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side min-h-full">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"

@@ -11,6 +11,7 @@ import { useState } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Loader from "../../../components/Loader";
 import Swal from "sweetalert2";
+import useCurrentDateTime from "../../../hooks/useCurrentDateTime";
 
 const DetailsAndSubmissionForm = ({
   _id,
@@ -33,6 +34,7 @@ const DetailsAndSubmissionForm = ({
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const currentDateTime = useCurrentDateTime();
 
   if (loading) {
     return <Loader height="min-h-full" />;
@@ -65,10 +67,6 @@ const DetailsAndSubmissionForm = ({
   };
 
   const onSubmit = async (data) => {
-    function getCurrentDate() {
-      const options = { year: "numeric", month: "short", day: "2-digit" };
-      return new Date().toLocaleDateString("en-US", options);
-    }
     try {
       setLoading(true);
       const submission = {
@@ -81,7 +79,7 @@ const DetailsAndSubmissionForm = ({
         worker_name: user.displayName,
         creator_name,
         creator_email,
-        current_date: getCurrentDate(),
+        current_date: currentDateTime,
         status: "pending",
       };
 

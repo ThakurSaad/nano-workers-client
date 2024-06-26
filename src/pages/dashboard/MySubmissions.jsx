@@ -35,7 +35,7 @@ const MySubmissions = () => {
             {submissions.map((submission) => (
               <div
                 key={submission._id}
-                className="card rounded-lg border shadow-lg hover:shadow-2xl duration-75 mb-6 w-full"
+                className="card rounded-lg border shadow-md hover:shadow-xl duration-75 mb-6 w-full"
               >
                 <div className="card-body">
                   <h2 className="card-title">{submission.task_title}</h2>
