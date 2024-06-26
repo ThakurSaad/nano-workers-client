@@ -1,21 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../components/SectionTitle";
-import useAuth from "../../hooks/useAuth";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
 import Loader from "../../components/Loader";
 import { FaMoneyBillAlt } from "react-icons/fa";
+import useSubmissions from "../../hooks/useSubmissions";
 
 const MySubmissions = () => {
-  const { user } = useAuth();
-  const axiosPrivate = useAxiosPrivate();
-
-  const { data: submissions = [], isLoading } = useQuery({
-    queryKey: ["my_submissions", user?.email],
-    queryFn: async () => {
-      const res = await axiosPrivate.get(`/submission/${user?.email}`);
-      return res.data;
-    },
-  });
+  const { submissions, isLoading } = useSubmissions();
 
   if (isLoading) {
     return <Loader height="min-h-full" />;

@@ -9,6 +9,9 @@ import Withdrawals from "../pages/dashboard/Withdrawals";
 import Profile from "../pages/dashboard/Profile";
 import TaskList from "../pages/dashboard/tasklist/TaskList";
 import TaskDetails from "../pages/dashboard/tasklist/TaskDetails";
+import WorkerHome from "../pages/dashboard/home/WorkerHome";
+import TaskCreatorHome from "../pages/dashboard/home/TaskCreatorHome";
+import AdminHome from "../pages/dashboard/home/AdminHome";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +36,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "dashboard",
     element: <Dashboard />,
@@ -44,6 +48,18 @@ export const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "workerHome",
+        element: <WorkerHome />,
+      },
+      {
+        path: "taskCreatorHome",
+        element: <TaskCreatorHome />,
+      },
+      {
+        path: "adminHome",
+        element: <AdminHome />,
       },
       {
         path: "taskList",

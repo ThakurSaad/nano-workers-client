@@ -4,6 +4,7 @@ import {
   FaFileAlt,
   FaHistory,
   FaHome,
+  FaHouseUser,
   FaListAlt,
   FaMoneyBillWave,
   FaPlus,
@@ -12,8 +13,11 @@ import {
   FaUserCog,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import useUser from "../../../hooks/useUser";
 
 const DashboardNavItems = () => {
+  const { user } = useUser();
+
   return (
     <>
       <li>
@@ -21,6 +25,26 @@ const DashboardNavItems = () => {
           <FaHome className="text-lg" />
           Home
         </NavLink>
+      </li>
+      <li>
+        {user.role === "worker" && (
+          <NavLink to="/dashboard/workerHome">
+            <FaHouseUser className="text-lg" />
+            My Home
+          </NavLink>
+        )}
+        {user.role === "task-creator" && (
+          <NavLink to="/dashboard/taskCreatorHome">
+            <FaHouseUser className="text-lg" />
+            My Home
+          </NavLink>
+        )}
+        {user.role === "admin" && (
+          <NavLink to="/dashboard/adminHome">
+            <FaHouseUser className="text-lg" />
+            My Home
+          </NavLink>
+        )}
       </li>
       <li>
         <NavLink to="/dashboard/profile">

@@ -28,7 +28,9 @@ const NavbarUpper = () => {
               tabIndex={2}
               className={`menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-28 bg-orange-50`}
             >
-              <small className="text-sm">Natasha</small>
+              <small className="text-sm text-customOrange">
+                {user.display_name}
+              </small>
               <small className="text-sm">{user.role}</small>
               <small className="text-sm flex flex-row">
                 {user.coin}
