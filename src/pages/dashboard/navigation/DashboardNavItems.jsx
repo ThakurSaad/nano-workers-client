@@ -100,7 +100,7 @@ const DashboardNavItems = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/purchaseCoin">
+            <NavLink to="/dashboard/purchaseCoins">
               <FaCoins className="text-lg" />
               Purchase Coin
             </NavLink>
