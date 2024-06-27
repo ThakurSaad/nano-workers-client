@@ -11,7 +11,7 @@ import { useState } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Loader from "../../../components/Loader";
 import Swal from "sweetalert2";
-import useCurrentDateTime from "../../../hooks/useCurrentDateTime";
+import useDateTime from "../../../hooks/useDateTime";
 
 const DetailsAndSubmissionForm = ({
   _id,
@@ -34,7 +34,7 @@ const DetailsAndSubmissionForm = ({
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
-  const currentDateTime = useCurrentDateTime();
+  const currentDateTime = useDateTime();
 
   if (loading) {
     return <Loader height="min-h-full" />;

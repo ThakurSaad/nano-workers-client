@@ -3,7 +3,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import useUser from "../../../hooks/useUser";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import useCurrentDateTime from "../../../hooks/useCurrentDateTime";
+import useDateTime from "../../../hooks/useDateTime";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Loader from "../../../components/Loader";
 
@@ -18,7 +18,7 @@ const Withdrawals = () => {
   const { user } = useUser();
   const { display_name, user_email, coin } = user;
   const [withdrawAmount, setWithdrawAmount] = useState(0);
-  const currentDateTime = useCurrentDateTime();
+  const currentDateTime = useDateTime();
   const axiosPrivate = useAxiosPrivate();
   const [loading, setLoading] = useState(false);
   const maxWithdrawalAmount = Math.round(parseFloat(coin / 20));
@@ -40,22 +40,17 @@ const Withdrawals = () => {
             setValue("withdraw_amount", 0);
 
             Swal.fire("Withdraw Successful!", "", "success");
+          } else {
+            Swal.fire(
+              "Something went wrong. Please try again later",
+              "",
+              "error"
+            );
           }
         }
       });
     } catch (err) {
-      setLoading(false);
-
-      if (err) {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: `${err.message}. Please try again`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
-    } finally {
+      console.log(err);
       setLoading(false);
     }
   };

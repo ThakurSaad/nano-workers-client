@@ -5,7 +5,7 @@ import NavbarUpper from "../pages/dashboard/navigation/NavbarUpper";
 
 const Dashboard = () => {
   return (
-    <section>
+    <section className="max-w-screen-2xl mx-auto">
       <NavbarUpper />
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -13,7 +13,7 @@ const Dashboard = () => {
           {/* Page content */}
           <Outlet />
         </div>
-        <div className="drawer-side min-h-full">  
+        <div className="drawer-side min-h-full">
           <label
             htmlFor="my-drawer-2"
             aria-label="close sidebar"
