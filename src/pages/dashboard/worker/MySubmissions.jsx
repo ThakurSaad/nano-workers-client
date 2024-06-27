@@ -1,7 +1,7 @@
-import SectionTitle from "../../components/SectionTitle";
-import Loader from "../../components/Loader";
+import SectionTitle from "../../../components/SectionTitle";
+import Loader from "../../../components/Loader";
 import { FaMoneyBillAlt } from "react-icons/fa";
-import useSubmissions from "../../hooks/useSubmissions";
+import useSubmissions from "../../../hooks/useSubmissions";
 
 const MySubmissions = () => {
   const { submissions, isLoading } = useSubmissions();

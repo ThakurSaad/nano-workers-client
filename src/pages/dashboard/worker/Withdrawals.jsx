@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import SectionTitle from "../../components/SectionTitle";
-import useUser from "../../hooks/useUser";
+import SectionTitle from "../../../components/SectionTitle";
+import useUser from "../../../hooks/useUser";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import useCurrentDateTime from "../../hooks/useCurrentDateTime";
-import useAxiosPrivate from "../../hooks/useAxiosPrivate";
-import Loader from "../../components/Loader";
+import useCurrentDateTime from "../../../hooks/useCurrentDateTime";
+import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import Loader from "../../../components/Loader";
 
 const Withdrawals = () => {
   const {

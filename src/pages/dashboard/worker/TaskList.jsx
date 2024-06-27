@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
-import TaskCard from "./TaskCard";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loader from "../../../components/Loader";
+import TaskCard from "../../../components/TaskCard";
 
 const TaskList = () => {
   const axiosPublic = useAxiosPublic();

@@ -1,6 +1,7 @@
 import {
   FaClipboardList,
   FaCoins,
+  FaExchangeAlt,
   FaFileAlt,
   FaHistory,
   FaHome,
@@ -8,6 +9,7 @@ import {
   FaListAlt,
   FaMoneyBillWave,
   FaPlus,
+  FaSignOutAlt,
   FaTasks,
   FaUser,
   FaUserCog,
@@ -17,15 +19,13 @@ import useUser from "../../../hooks/useUser";
 
 const DashboardNavItems = () => {
   const { user } = useUser();
+  const isWorker = false;
+  const isTaskCreator = false;
+  const isAdmin = true;
 
   return (
     <>
-      <li>
-        <NavLink to="/">
-          <FaHome className="text-lg" />
-          Home
-        </NavLink>
-      </li>
+      {/* common */}
       <li>
         {user.role === "worker" && (
           <NavLink to="/dashboard/workerHome">
@@ -53,60 +53,91 @@ const DashboardNavItems = () => {
         </NavLink>
       </li>
       {/* worker */}
-      <li>
-        <NavLink to="/dashboard/taskList">
-          <FaListAlt className="text-lg" />
-          Task List
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/mySubmissions">
-          <FaFileAlt className="text-lg" />
-          My Submissions
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/withdrawals">
-          <FaMoneyBillWave className="text-lg" />
-          Withdrawals
-        </NavLink>
-      </li>
+      {isWorker && (
+        <>
+          <li>
+            <NavLink to="/dashboard/taskList">
+              <FaListAlt className="text-lg" />
+              Task List
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/mySubmissions">
+              <FaFileAlt className="text-lg" />
+              My Submissions
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/withdrawals">
+              <FaMoneyBillWave className="text-lg" />
+              Withdrawals
+            </NavLink>
+          </li>{" "}
+        </>
+      )}
       {/* task creator */}
-      <li>
-        <NavLink to="/dashboard/addNewTasks">
-          <FaPlus className="text-lg" />
-          Add New Tasks
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/myTasks">
-          <FaTasks className="text-lg" />
-          My Tasks
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/purchaseCoin">
-          <FaCoins className="text-lg" />
-          Purchase Coin
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/paymentHistory">
-          <FaHistory className="text-lg" />
-          Payment History
-        </NavLink>
-      </li>
+      {isTaskCreator && (
+        <>
+          <li>
+            <NavLink to="/dashboard/addNewTasks">
+              <FaPlus className="text-lg" />
+              Add New Tasks
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/myTasks">
+              <FaTasks className="text-lg" />
+              My Tasks
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/purchaseCoin">
+              <FaCoins className="text-lg" />
+              Purchase Coin
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/paymentHistory">
+              <FaHistory className="text-lg" />
+              Payment History
+            </NavLink>
+          </li>
+        </>
+      )}
       {/* admin */}
+      {isAdmin && (
+        <>
+          <li>
+            <NavLink to="/dashboard/manageUsers">
+              <FaUserCog className="text-lg" />
+              Manage Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/manageTasks">
+              <FaClipboardList className="text-lg" />
+              Manage Tasks
+            </NavLink>
+          </li>
+        </>
+      )}
+      <div className="divider"></div>
       <li>
-        <NavLink to="/dashboard/manageUsers">
-          <FaUserCog className="text-lg" />
-          Manage Users
+        <NavLink to="/">
+          <FaHome className="text-lg" />
+          Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard/manageTasks">
-          <FaClipboardList className="text-lg" />
-          Manage Tasks
+        <NavLink to="/">
+          <FaSignOutAlt className="text-lg" />
+          Sign Out
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">
+          <FaExchangeAlt className="text-lg" />
+          Switch Account
         </NavLink>
       </li>
     </>

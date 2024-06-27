@@ -4,14 +4,15 @@ import Home from "../pages/home/Home";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Dashboard from "../layout/Dashboard";
-import MySubmissions from "../pages/dashboard/MySubmissions";
-import Withdrawals from "../pages/dashboard/Withdrawals";
-import Profile from "../pages/dashboard/Profile";
-import TaskList from "../pages/dashboard/tasklist/TaskList";
-import TaskDetails from "../pages/dashboard/tasklist/TaskDetails";
-import WorkerHome from "../pages/dashboard/home/WorkerHome";
-import TaskCreatorHome from "../pages/dashboard/home/TaskCreatorHome";
-import AdminHome from "../pages/dashboard/home/AdminHome";
+import MySubmissions from "../pages/dashboard/worker/MySubmissions";
+import Withdrawals from "../pages/dashboard/worker/Withdrawals";
+import Profile from "../pages/dashboard/common/Profile";
+import WorkerHome from "../pages/dashboard/worker/WorkerHome";
+import TaskCreatorHome from "../pages/dashboard/taskCreator/TaskCreatorHome";
+import AdminHome from "../pages/dashboard/admin/AdminHome";
+import TaskDetails from "../pages/dashboard/worker/TaskDetails";
+import TaskList from "../pages/dashboard/worker/TaskList";
+import AddNewTasks from "../pages/dashboard/taskCreator/AddNewTasks";
 
 export const router = createBrowserRouter([
   {
@@ -49,18 +50,12 @@ export const router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
+      // worker
       {
         path: "workerHome",
         element: <WorkerHome />,
       },
-      {
-        path: "taskCreatorHome",
-        element: <TaskCreatorHome />,
-      },
-      {
-        path: "adminHome",
-        element: <AdminHome />,
-      },
+
       {
         path: "taskList",
         element: <TaskList />,
@@ -76,6 +71,20 @@ export const router = createBrowserRouter([
       {
         path: "withdrawals",
         element: <Withdrawals />,
+      },
+      // task creator
+      {
+        path: "taskCreatorHome",
+        element: <TaskCreatorHome />,
+      },
+      {
+        path: "addNewTasks",
+        element: <AddNewTasks />,
+      },
+      // admin
+      {
+        path: "adminHome",
+        element: <AdminHome />,
       },
     ],
   },
