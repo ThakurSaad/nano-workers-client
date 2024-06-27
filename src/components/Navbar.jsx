@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/nano-worker-logo.svg";
 import { BsList } from "react-icons/bs";
+import useLogout from "../hooks/useLogout";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
+  const handleLogOut = useLogout();
+
   const menuItems = (
     <>
       <li>
@@ -11,15 +16,25 @@ const Navbar = () => {
       <li>
         <Link>Watch Demo</Link>
       </li>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
-      <li className="bg-customOrange rounded font-medium text-lg text-white lg:mr-4 my-1 lg:my-0 lg:px-4">
-        <Link to="/login">Login</Link>
-      </li>
-      <li className="bg-customOrange rounded font-medium text-lg text-white my-1 lg:my-0 lg:px-4">
-        <Link to="/register">Register</Link>
-      </li>
+      {user ? (
+        <>
+          <li>
+            <Link to="/dashboard">Dashboard</Link>
+          </li>
+          <li className="bg-customOrange rounded font-medium text-lg text-white lg:mr-4 my-1 lg:my-0 lg:px-4">
+            <button onClick={handleLogOut}>Logout</button>
+          </li>
+        </>
+      ) : (
+        <>
+          <li className="bg-customOrange rounded font-medium text-lg text-white lg:mr-4 my-1 lg:my-0 lg:px-4">
+            <Link to="/login">Login</Link>
+          </li>
+          <li className="bg-customOrange rounded font-medium text-lg text-white my-1 lg:my-0 lg:px-4">
+            <Link to="/register">Register</Link>
+          </li>
+        </>
+      )}
     </>
   );
 

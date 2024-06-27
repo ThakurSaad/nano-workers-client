@@ -16,42 +16,50 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useUser from "../../../hooks/useUser";
+import useLogout from "../../../hooks/useLogout";
 
 const DashboardNavItems = () => {
   const { user } = useUser();
+  const handleLogOut = useLogout();
+
   const isWorker = false;
-  const isTaskCreator = false;
-  const isAdmin = true;
+  const isTaskCreator = true;
+  const isAdmin = false;
 
   return (
     <>
       {/* common */}
-      <li>
-        {user.role === "worker" && (
+      {user.role === "worker" && (
+        <li>
           <NavLink to="/dashboard/workerHome">
             <FaHouseUser className="text-lg" />
             My Home
           </NavLink>
-        )}
-        {user.role === "task-creator" && (
+        </li>
+      )}
+      {user.role === "task-creator" && (
+        <li>
           <NavLink to="/dashboard/taskCreatorHome">
             <FaHouseUser className="text-lg" />
             My Home
           </NavLink>
-        )}
-        {user.role === "admin" && (
+        </li>
+      )}
+      {user.role === "admin" && (
+        <li>
           <NavLink to="/dashboard/adminHome">
             <FaHouseUser className="text-lg" />
             My Home
           </NavLink>
-        )}
-      </li>
+        </li>
+      )}
       <li>
         <NavLink to="/dashboard/profile">
           <FaUser className="text-lg" />
           My Profile
         </NavLink>
       </li>
+
       {/* worker */}
       {isWorker && (
         <>
@@ -75,6 +83,7 @@ const DashboardNavItems = () => {
           </li>{" "}
         </>
       )}
+
       {/* task creator */}
       {isTaskCreator && (
         <>
@@ -104,6 +113,7 @@ const DashboardNavItems = () => {
           </li>
         </>
       )}
+
       {/* admin */}
       {isAdmin && (
         <>
@@ -121,7 +131,10 @@ const DashboardNavItems = () => {
           </li>
         </>
       )}
+
       <div className="divider"></div>
+
+      {/* common */}
       <li>
         <NavLink to="/">
           <FaHome className="text-lg" />
@@ -129,10 +142,10 @@ const DashboardNavItems = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/">
+        <button onClick={handleLogOut}>
           <FaSignOutAlt className="text-lg" />
           Sign Out
-        </NavLink>
+        </button>
       </li>
       <li>
         <NavLink to="/login">
