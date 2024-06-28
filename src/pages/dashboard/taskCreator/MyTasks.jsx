@@ -5,12 +5,17 @@ import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Loader from "../../../components/Loader";
 import { FaCoins } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const MyTasks = () => {
-  const { user } = useUser();
+  const { user, refetch: fetchUser } = useUser();
   const axiosPrivate = useAxiosPrivate();
 
-  const { data: myTasks = [], isLoading } = useQuery({
+  const {
+    data: myTasks = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["myTasks", user?.user_email],
     queryFn: async () => {
       const res = await axiosPrivate.get(`/myTasks/${user?.user_email}`);
@@ -20,6 +25,51 @@ const MyTasks = () => {
       return myTasks;
     },
   });
+
+  const deleteFromToDB = async (idAndCoinAndEmail) => {
+    try {
+      Swal.fire({
+        title: "Confirm deletion? You can't undo it",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await axiosPrivate.delete("/task", {
+            data: idAndCoinAndEmail,
+          });
+
+          refetch();
+          fetchUser();
+
+          if (res.data.deletedCount) {
+            Swal.fire(
+              `Successfully Deleted. Your coins have been refunded`,
+              "",
+              "success"
+            );
+          } else {
+            Swal.fire(
+              "Something went wrong. Please try again later",
+              "",
+              "error"
+            );
+          }
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (id, totalCoin) => {
+    const idAndCoinAndEmail = {
+      id,
+      coin: totalCoin,
+      email: user?.user_email,
+    };
+
+    await deleteFromToDB(idAndCoinAndEmail);
+  };
 
   if (isLoading) {
     return <Loader height="min-h-full" />;
@@ -83,7 +133,15 @@ const MyTasks = () => {
                       </button>
                     </td>
                     <td>
-                      <button className="btn btn-sm bg-red-100 text-red-500 uppercase">
+                      <button
+                        className="btn btn-sm bg-red-100 text-red-500 uppercase"
+                        onClick={() =>
+                          handleDelete(
+                            task._id,
+                            task.task_count * task.payable_amount
+                          )
+                        }
+                      >
                         delete
                       </button>
                     </td>
