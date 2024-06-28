@@ -16,6 +16,7 @@ import AddNewTasks from "../pages/dashboard/taskCreator/AddNewTasks";
 import MyTasks from "../pages/dashboard/taskCreator/MyTasks";
 import PurchaseCoins from "../pages/dashboard/taskCreator/PurchaseCoins";
 import PaymentHistory from "../pages/dashboard/taskCreator/PaymentHistory";
+import UpdateTask from "../pages/dashboard/taskCreator/UpdateTask";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "myTasks",
         element: <MyTasks />,
+      },
+      {
+        path: "myTasks/:taskId",
+        element: <UpdateTask />,
       },
       {
         path: "purchaseCoins",

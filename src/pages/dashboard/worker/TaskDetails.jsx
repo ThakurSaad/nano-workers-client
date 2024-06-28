@@ -1,22 +1,13 @@
 import { useParams } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useQuery } from "@tanstack/react-query";
 import DetailsAndSubmissionForm from "./DetailsAndSubmissionForm";
 import Loader from "../../../components/Loader";
+import useTask from "../../../hooks/useTask";
 
 // full page
 const TaskDetails = () => {
   const { taskId } = useParams();
-  const axiosPublic = useAxiosPublic();
-
-  const { data: task = {}, isLoading } = useQuery({
-    queryKey: ["task", taskId],
-    queryFn: async () => {
-      const res = await axiosPublic.get(`/taskList/${taskId}`);
-      return res.data;
-    },
-  });
+  const { task, isLoading } = useTask(taskId);
 
   const {
     _id,

@@ -17,3 +17,4 @@
 2. Convert payable_amount to coins
 3. Change all the time format to "Jul 01, 2024, 11:59 PM". Make all the deadline "11:59 PM"
 4. Change property of each task from published_date to completion_date. change render code.
+5. react helmet
