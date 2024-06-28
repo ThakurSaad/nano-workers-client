@@ -10,6 +10,7 @@
 - @tanstack/react-query
 - axios
 - sweetalert2
+- @stripe/react-stripe-js @stripe/stripe-js
 
 ### TODO
 

@@ -14,9 +14,10 @@ import TaskDetails from "../pages/dashboard/worker/TaskDetails";
 import TaskList from "../pages/dashboard/worker/TaskList";
 import AddNewTasks from "../pages/dashboard/taskCreator/AddNewTasks";
 import MyTasks from "../pages/dashboard/taskCreator/MyTasks";
-import PurchaseCoins from "../pages/dashboard/taskCreator/PurchaseCoins";
 import PaymentHistory from "../pages/dashboard/taskCreator/PaymentHistory";
 import UpdateTask from "../pages/dashboard/taskCreator/UpdateTask";
+import PurchaseCoins from "../pages/dashboard/taskCreator/payment/PurchaseCoins";
+import Payment from "../pages/dashboard/taskCreator/payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
       {
         path: "purchaseCoins",
         element: <PurchaseCoins />,
+      },
+      {
+        path: "purchaseCoins/:title",
+        element: <Payment />,
       },
       {
         path: "paymentHistory",
