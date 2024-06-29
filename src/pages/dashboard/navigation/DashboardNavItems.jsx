@@ -23,8 +23,8 @@ const DashboardNavItems = () => {
   const handleLogOut = useLogout();
 
   const isWorker = false;
-  const isTaskCreator = true;
-  const isAdmin = false;
+  const isTaskCreator = false;
+  const isAdmin = true;
 
   return (
     <>

@@ -15,6 +15,7 @@ const NavbarUpper = () => {
           <img className="w-60" src={logo} alt="logo" />
         </div>
         <div className="flex flex-grow justify-evenly xs:flex-none md:mr-5">
+          {/* profile */}
           <div className="dropdown -mb-2">
             <div className="avatar">
               <div className="absolute z-50 bg-transparent w-7 h-7 p-0 m-0 right-0 top-0 -mt-1 -mr-5">
@@ -43,6 +44,8 @@ const NavbarUpper = () => {
               </small>
             </ul>
           </div>
+
+          {/* notification */}
           <div>
             <button className="ml-5 flex">
               <FaBell className="text-5xl hover:scale-105 duration-75 bg-orange-200 border-2 rounded-full w-12 h-12 sm:w-14 sm:h-14 p-2 sm:p-3" />
@@ -51,6 +54,7 @@ const NavbarUpper = () => {
               </div>
             </button>
           </div>
+
           {/* navigation panel button for sm device */}
           <label
             htmlFor="my-drawer-2"

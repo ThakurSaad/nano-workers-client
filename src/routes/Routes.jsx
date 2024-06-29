@@ -18,11 +18,13 @@ import PaymentHistory from "../pages/dashboard/taskCreator/PaymentHistory";
 import UpdateTask from "../pages/dashboard/taskCreator/UpdateTask";
 import PurchaseCoins from "../pages/dashboard/taskCreator/payment/PurchaseCoins";
 import Payment from "../pages/dashboard/taskCreator/payment/Payment";
+import ErrorPage from "../pages/error/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
