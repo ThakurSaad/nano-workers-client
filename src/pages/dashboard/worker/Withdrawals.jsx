@@ -39,11 +39,15 @@ const Withdrawals = () => {
             reset();
             setValue("withdraw_amount", 0);
 
-            Swal.fire("Withdraw Successful!", "", "success");
+            Swal.fire(
+              "Successful",
+              `You have withdraw $${withdrawAmount}`,
+              "success"
+            );
           } else {
             Swal.fire(
-              "Something went wrong. Please try again later",
-              "",
+              "Something went wrong",
+              "Please try again after hard reload (ctrl + shift + R)",
               "error"
             );
           }

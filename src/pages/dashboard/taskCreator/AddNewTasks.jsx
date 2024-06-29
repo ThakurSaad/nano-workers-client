@@ -41,14 +41,14 @@ const AddNewTasks = () => {
           if (res.data.insertedId) {
             refetch();
             Swal.fire(
-              `Successful! Task id ${res.data.insertedId}`,
-              "",
+              `Successful!`,
+              `Task id ${res.data.insertedId}`,
               "success"
             );
           } else {
             Swal.fire(
-              "Something went wrong. Please try again later",
-              "",
+              "Something went wrong.",
+              "Please try again after hard reload (ctrl + shift + R)",
               "error"
             );
           }

@@ -34,11 +34,11 @@ const UpdateTask = () => {
           console.log(res.data);
 
           if (res.data.modifiedCount) {
-            Swal.fire(`Successfully Updated`, "", "success");
+            Swal.fire(`Updated`, "Your task has been updated", "success");
           } else {
             Swal.fire(
-              "Something went wrong or you have not updated any data",
-              "",
+              "Something went wrong",
+              "You may have not updated any data.<br/>If the issue persists, please try again after hard reload (ctrl + shift + R)",
               "error"
             );
           }

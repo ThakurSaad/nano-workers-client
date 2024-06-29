@@ -44,14 +44,17 @@ const DetailsAndSubmissionForm = ({
     try {
       const res = await axiosPrivate.post("/submission", submission);
       if (res.data.insertedId) {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title:
-            "Your submission has been sent to the client. Please wait for confirmation.",
-          showConfirmButton: false,
-          timer: 5000,
-        });
+        Swal.fire(
+          `Successful`,
+          `Your submission has been sent to the client. <br/> Please wait for confirmation.`,
+          "success"
+        );
+      } else {
+        Swal.fire(
+          `Something went wrong`,
+          `Please try again after hard reload (ctrl + shift + R)`,
+          "error"
+        );
       }
     } catch (err) {
       if (err) {

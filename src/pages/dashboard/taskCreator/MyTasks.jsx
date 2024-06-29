@@ -42,15 +42,11 @@ const MyTasks = () => {
           fetchUser();
 
           if (res.data.deletedCount) {
-            Swal.fire(
-              `Successfully Deleted. Your coins have been refunded`,
-              "",
-              "success"
-            );
+            Swal.fire(`Deleted`, "Your coins have been refunded", "success");
           } else {
             Swal.fire(
-              "Something went wrong. Please try again later",
-              "",
+              "Something went wrong",
+              "Please try again after hard reload (ctrl + shift + R)",
               "error"
             );
           }
