@@ -3,6 +3,7 @@ import logo from "../../../assets/nano-worker-logo.svg";
 import { FaBell, FaCoins } from "react-icons/fa";
 import { IoIosArrowDropdown } from "react-icons/io";
 import useUser from "../../../hooks/useUser";
+import defaultDp from "../../../assets/dashbord-default-dp.jpg";
 
 const NavbarUpper = () => {
   const { user } = useUser();
@@ -15,14 +16,16 @@ const NavbarUpper = () => {
         </div>
         <div className="flex flex-grow justify-evenly xs:flex-none md:mr-5">
           <div className="dropdown -mb-2">
-            <div className="avatar flex flex-col items-center">
+            <div className="avatar">
+              <div className="absolute z-50 bg-transparent w-7 h-7 p-0 m-0 right-0 top-0 -mt-1 -mr-5">
+                <IoIosArrowDropdown className="text-xl text-orange-600" />
+              </div>
               <div
-                className="ring-white ring-offset-base-100 ring ring-offset-2 hover:cursor-pointer w-12 rounded-full"
+                className="border-2 border-gray-200 hover:scale-105 duration-75 hover:cursor-pointer w-12 sm:w-14 rounded-full"
                 tabIndex={2}
               >
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                <img src={defaultDp} />
               </div>
-              <IoIosArrowDropdown className="text-2xl" />
             </div>
             <ul
               tabIndex={2}
@@ -41,9 +44,11 @@ const NavbarUpper = () => {
             </ul>
           </div>
           <div>
-            <button className="btn btn-neutral ml-5">
-              <FaBell className="text-xl" />
-              <div className="badge">+99</div>
+            <button className="ml-5 flex">
+              <FaBell className="text-5xl hover:scale-105 duration-75 bg-orange-200 border-2 rounded-full w-12 h-12 sm:w-14 sm:h-14 p-2 sm:p-3" />
+              <div className="relative z-50 badge badge-sm sm:badge-md bg-error text-white -ml-3">
+                99
+              </div>
             </button>
           </div>
           {/* navigation panel button for sm device */}
