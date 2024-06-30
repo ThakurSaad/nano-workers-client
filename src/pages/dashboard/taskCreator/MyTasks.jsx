@@ -108,7 +108,7 @@ const MyTasks = () => {
             <tbody>
               {myTasks.map((task, index) => {
                 const modifiedTitle =
-                  task.task_title.length > 10
+                  task.task_title.length > 15
                     ? `${task.task_title.substring(0, 15)}...`
                     : task.task_title;
                 return (

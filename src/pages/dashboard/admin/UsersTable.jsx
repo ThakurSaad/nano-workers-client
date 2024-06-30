@@ -1,4 +1,4 @@
-import { FaCoins } from "react-icons/fa";
+import { FaCoins, FaEdit, FaTrash } from "react-icons/fa";
 
 const UsersTable = ({
   users,
@@ -39,10 +39,11 @@ const UsersTable = ({
                 </td>
                 <td className="text-center">
                   <form
+                    className="flex items-center"
                     onSubmit={handleSubmit((data) => onSubmit(data, user._id))}
                   >
                     <select
-                      className="select select-bordered select-sm w-full max-w-xs"
+                      className="select select-bordered rounded-r-none select-sm w-full min-w-24 max-w-xs"
                       defaultValue={user.role}
                       {...register(`role_${user._id}`, { required: true })}
                     >
@@ -50,21 +51,21 @@ const UsersTable = ({
                       <option value="task-creator">Task Creator</option>
                       <option value="admin">Admin</option>
                     </select>
-                    <br />
+                    {/* <br /> */}
                     <button
                       type="submit"
-                      className="btn btn-sm bg-orange-100 text-customOrange uppercase mt-2"
+                      className="btn btn-sm border-2 border-customOrange rounded-l-none bg-customOrange hover:text-neutral text-white uppercase -ml-3"
                     >
-                      Update
+                      <FaEdit className="text-xl" />
                     </button>
                   </form>
                 </td>
                 <td>
                   <button
-                    className="btn btn-sm bg-red-100 text-red-500 uppercase"
+                    className="btn btn-sm bg-red-700 hover:text-neutral text-white uppercase"
                     onClick={() => handleDelete(user._id)}
                   >
-                    Remove
+                    <FaTrash className="text-lg" />
                   </button>
                 </td>
               </tr>
