@@ -105,7 +105,7 @@ const Register = () => {
                 >
                   <div className="form-control w-full max-w-xs">
                     <label className="label">
-                      <span className="label-text">Name</span>
+                      <span className="label-text">Name*</span>
                     </label>
                     <input
                       type="name"
@@ -135,7 +135,7 @@ const Register = () => {
 
                   <div className="form-control w-full max-w-xs">
                     <label className="label">
-                      <span className="label-text">Email</span>
+                      <span className="label-text">Email*</span>
                     </label>
                     <input
                       type="email"
@@ -165,7 +165,7 @@ const Register = () => {
 
                   <div className="form-control w-full max-w-xs">
                     <label className="label">
-                      <span className="label-text">Password</span>
+                      <span className="label-text">Password*</span>
                     </label>
                     <input
                       type="password"
@@ -197,7 +197,7 @@ const Register = () => {
                   </div>
 
                   <div className="form-control w-full max-w-xs">
-                    <p>Select your role</p>
+                    <p>Select your role*</p>
                     <div className="flex mt-3 mb-1">
                       <input
                         {...register("role", {
@@ -226,9 +226,9 @@ const Register = () => {
                       />
                       <label htmlFor="task-creator">Task Creator</label>
                     </div>
-                    {errors.radio?.type === "required" && (
+                    {errors.role?.type === "required" && (
                       <span className="label-text-alt text-red-500">
-                        {errors.radio.message}
+                        {errors.role.message}
                       </span>
                     )}
                   </div>

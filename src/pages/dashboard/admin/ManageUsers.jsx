@@ -1,4 +1,3 @@
-import { FaCoins } from "react-icons/fa";
 import Loader from "../../../components/Loader";
 import SectionTitle from "../../../components/SectionTitle";
 import useAllUsers from "../../../hooks/useAllUsers";
@@ -6,12 +5,17 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
+import useFilterUsers from "../../../hooks/useFilterUsers";
+import UsersTable from "./UsersTable";
 
 const ManageUsers = () => {
   const { register, handleSubmit } = useForm();
   const { users, isLoading, refetch } = useAllUsers();
   const [loading, setLoading] = useState(false);
   const axiosPrivate = useAxiosPrivate();
+  const workerUsers = useFilterUsers(users, "worker");
+  const taskCreatorUsers = useFilterUsers(users, "task-creator");
+  const adminUsers = useFilterUsers(users, "admin");
 
   const updateRoleToDB = async (roleAndId) => {
     try {
@@ -20,6 +24,7 @@ const ManageUsers = () => {
         text: `Updating role of userId: ${roleAndId.id}, updatedRole: ${roleAndId.role}`,
         showCancelButton: true,
         confirmButtonText: "Yes",
+        icon: "question",
       }).then(async (result) => {
         if (result.isConfirmed) {
           setLoading(true);
@@ -57,6 +62,46 @@ const ManageUsers = () => {
     await updateRoleToDB(roleAndId);
   };
 
+  const deleteUserFromDB = async (id) => {
+    try {
+      Swal.fire({
+        title: "Confirm Delete",
+        text: `Once deleted it can't be undone. Deleting user ${id}`,
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+        icon: "warning",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          setLoading(true);
+          const res = await axiosPrivate.delete(`/user/${id}`);
+          setLoading(false);
+          refetch();
+
+          if (res.data.deletedCount) {
+            Swal.fire(
+              "Successful",
+              `You have deleted the user.<br/> He/she will not be able to use this site anymore.`,
+              "success"
+            );
+          } else {
+            Swal.fire(
+              "Something went wrong",
+              "If this issue persist please try again after hard reload (ctrl + shift + R)",
+              "error"
+            );
+          }
+        }
+      });
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (userId) => {
+    await deleteUserFromDB(userId);
+  };
+
   if (isLoading || loading) {
     return <Loader height="min-h-full" />;
   }
@@ -64,69 +109,58 @@ const ManageUsers = () => {
   return (
     <section>
       <div>
-        <SectionTitle heading={"Manage Users"} />
+        <SectionTitle
+          heading={"Manage Users"}
+          subHeading={"Viewing all the nano worker users"}
+        />
       </div>
-      <div className="overflow-x-auto">
-        <table className="table w-full border rounded">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Coins</th>
-              <th>Role</th>
-              <th>Update Role</th>
-              <th>Remove User</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => {
-              return (
-                <tr key={user._id}>
-                  <td>{index + 1}</td>
-                  <td>{user.display_name}</td>
-                  <td>{user.user_email}</td>
-                  <td>
-                    {user.coin}
-                    <FaCoins className="text-lg mx-2 inline text-customOrange" />
-                  </td>
-                  <td>
-                    <span className="bg-gray-200 rounded-lg px-2 py-1">{user.role}</span>
-                  </td>
-                  <td className="text-center">
-                    <form
-                      onSubmit={handleSubmit((data) =>
-                        onSubmit(data, user._id)
-                      )}
-                    >
-                      <select
-                        className="select select-bordered select-sm w-full max-w-xs"
-                        defaultValue={user.role}
-                        {...register(`role_${user._id}`, { required: true })}
-                      >
-                        <option value="worker">Worker</option>
-                        <option value="task-creator">Task Creator</option>
-                        <option value="admin">Admin</option>
-                      </select>
-                      <br />
-                      <button
-                        type="submit"
-                        className="btn btn-sm bg-orange-100 text-customOrange uppercase mt-2"
-                      >
-                        Update
-                      </button>
-                    </form>
-                  </td>
-                  <td>
-                    <button className="btn btn-sm bg-red-100 text-red-500 uppercase">
-                      Remove
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+      <div>
+        <h3 className="text-xl">Update</h3>
+        <p className="text-gray-500 mb-4">
+          You can update a specific user&apos;s role.
+        </p>
+        <h3 className="text-xl">Remove</h3>
+        <p className="text-gray-500 mb-4">
+          You can remove a specific user. <br /> Make sure to confirm before
+          deletion. Once deleted the user will not be able to use this platform.
+        </p>
+      </div>
+
+      <div>
+        <h3 className="text-xl my-4">
+          Number of workers : {workerUsers.length}
+        </h3>
+        <UsersTable
+          handleDelete={handleDelete}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          register={register}
+          users={workerUsers}
+        />
+      </div>
+
+      <div>
+        <h3 className="text-xl my-4">
+          Number of task creators : {taskCreatorUsers.length}
+        </h3>
+        <UsersTable
+          handleDelete={handleDelete}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          register={register}
+          users={taskCreatorUsers}
+        />
+      </div>
+
+      <div>
+        <h3 className="text-xl my-4">Number of admins : {adminUsers.length}</h3>
+        <UsersTable
+          handleDelete={handleDelete}
+          handleSubmit={handleSubmit}
+          onSubmit={onSubmit}
+          register={register}
+          users={adminUsers}
+        />
       </div>
     </section>
   );
