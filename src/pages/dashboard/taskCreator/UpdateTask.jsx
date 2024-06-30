@@ -23,7 +23,8 @@ const UpdateTask = () => {
     try {
       console.log(updatedTask);
       Swal.fire({
-        title: "Are you sure you want to update the task?",
+        title: "Confirm Update",
+        text: "Are you sure you want to update the task?",
         showCancelButton: true,
         confirmButtonText: "Yes",
       }).then(async (result) => {

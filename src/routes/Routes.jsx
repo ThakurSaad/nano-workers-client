@@ -19,6 +19,8 @@ import UpdateTask from "../pages/dashboard/taskCreator/UpdateTask";
 import PurchaseCoins from "../pages/dashboard/taskCreator/payment/PurchaseCoins";
 import Payment from "../pages/dashboard/taskCreator/payment/Payment";
 import ErrorPage from "../pages/error/ErrorPage";
+import ManageUsers from "../pages/dashboard/admin/ManageUsers";
+import ManageTasks from "../pages/dashboard/admin/ManageTasks";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +59,7 @@ export const router = createBrowserRouter([
         path: "profile",
         element: <Profile />,
       },
+
       // worker
       {
         path: "workerHome",
@@ -79,6 +82,7 @@ export const router = createBrowserRouter([
         path: "withdrawals",
         element: <Withdrawals />,
       },
+
       // task creator
       {
         path: "taskCreatorHome",
@@ -108,10 +112,19 @@ export const router = createBrowserRouter([
         path: "paymentHistory",
         element: <PaymentHistory />,
       },
+
       // admin
       {
         path: "adminHome",
         element: <AdminHome />,
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers />,
+      },
+      {
+        path: "manageTasks",
+        element: <ManageTasks />,
       },
     ],
   },

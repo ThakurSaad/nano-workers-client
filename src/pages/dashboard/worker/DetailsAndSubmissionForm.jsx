@@ -4,7 +4,7 @@ import {
   FaRegListAlt,
   FaRegMoneyBillAlt,
 } from "react-icons/fa";
-import profile from "../../../assets/profile.png";
+import profile from "../../../assets/dashboard-default-dp.jpg";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
@@ -145,9 +145,9 @@ const DetailsAndSubmissionForm = ({
         <h4 className="text-xl text-gray-500 mb-2">Task Information</h4>
         <hr />
         <div className="border mt-4">
-          <div className="flex items-center pr-6 xs:p-6">
-            <div>
-              <img src={profile} alt="profile" className="w-12" />
+          <div className="flex items-center p-6">
+            <div className="absolute xs:relative text-center w-12">
+              <img src={profile} alt="profile" className="w-12 rounded-full" />
             </div>
             <div className="divider divider-horizontal"></div>
             <div>
