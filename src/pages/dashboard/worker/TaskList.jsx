@@ -1,19 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Loader from "../../../components/Loader";
 import TaskCard from "../../../components/TaskCard";
+import useAllTasks from "../../../hooks/useAllTasks";
 
 const TaskList = () => {
-  const axiosPublic = useAxiosPublic();
-
-  const { data: taskList = [], isLoading } = useQuery({
-    queryKey: ["taskList"],
-    queryFn: async () => {
-      const res = await axiosPublic.get("/taskList");
-      return res.data;
-    },
-  });
+  const { tasks: taskList, isLoading } = useAllTasks();
 
   if (isLoading) {
     return <Loader height="min-h-full" />;
