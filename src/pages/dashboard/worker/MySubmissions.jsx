@@ -1,6 +1,11 @@
 import SectionTitle from "../../../components/SectionTitle";
 import Loader from "../../../components/Loader";
-import { FaMoneyBillAlt } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaCoins,
+  FaHourglassHalf,
+  FaTimesCircle,
+} from "react-icons/fa";
 import useSubmissions from "../../../hooks/useSubmissions";
 
 const MySubmissions = () => {
@@ -36,10 +41,9 @@ const MySubmissions = () => {
                     {submission.submission_details}
                   </p>
                   <div className="flex items-center text-gray-500">
-                    <FaMoneyBillAlt className="mr-2" />
                     <p>
-                      <strong>You will earn:</strong> $
-                      {submission.payable_amount}
+                      <strong>You will earn:</strong> &nbsp;
+                      {submission.payable_amount} <FaCoins className="inline" />
                     </p>
                   </div>
                   <p className="text-gray-500">
@@ -52,16 +56,19 @@ const MySubmissions = () => {
                     <strong>Status:</strong> &nbsp;
                     {submission.status === "pending" && (
                       <span className="text-customOrange bg-orange-100 uppercase font-semibold px-3 py-1 rounded">
+                        <FaHourglassHalf className="inline text-sm mb-1" />{" "}
                         {submission.status}
                       </span>
                     )}
                     {submission.status === "approved" && (
                       <span className="text-green-600 bg-green-100 uppercase font-semibold px-3 py-1 rounded">
+                        <FaCheckCircle className="inline mb-1" />{" "}
                         {submission.status}
                       </span>
                     )}
                     {submission.status === "rejected" && (
                       <span className="text-red-600 bg-red-100 uppercase font-semibold px-3 py-1 rounded">
+                        <FaTimesCircle className="inline mb-1" />{" "}
                         {submission.status}
                       </span>
                     )}

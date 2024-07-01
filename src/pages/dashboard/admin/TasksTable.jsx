@@ -1,4 +1,4 @@
-import { FaCoins, FaEye, FaTrash } from "react-icons/fa";
+import { FaCoins, FaInfoCircle, FaTrash } from "react-icons/fa";
 
 const TasksTable = ({
   taskList = [],
@@ -17,7 +17,7 @@ const TasksTable = ({
             <th>Task Quantity</th>
             <th>Payable Amount (total)</th>
             <th>Availability</th>
-            <th>View Task</th>
+            <th>Task Details</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -69,7 +69,7 @@ const TasksTable = ({
                     }
                     className="btn btn-sm bg-customOrange hover:text-neutral text-white uppercase"
                   >
-                    <FaEye className="text-xl" />
+                    <FaInfoCircle className="text-xl" />
                   </button>
                 </td>
                 <td>
