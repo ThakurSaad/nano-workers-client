@@ -28,14 +28,18 @@ const useAxiosPrivate = () => {
       return response;
     },
     async function (error) {
-      console.log(error.response);
       const status = error.response.status;
+      console.log(status);
 
-      if (status === 401) {
+      if (status === 400 || status === 401) {
         await logout();
         navigate("/login");
 
-        Swal.fire(`Unauthorized Access`, "", "error");
+        if (status === 400) {
+          Swal.fire("Bad Request", "", "error");
+        } else if (status === 401) {
+          Swal.fire("Unauthorized Access", "", "error");
+        }
       }
 
       return Promise.reject(error);
