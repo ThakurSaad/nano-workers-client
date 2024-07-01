@@ -14,7 +14,8 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { login, loading, setLoading } = useAuth();
+  const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState("");
   const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       setAuthError("");
+      setLoading(true);
       await login(data.email, data.password);
       Swal.fire({
         position: "top-end",
@@ -36,7 +38,7 @@ const Login = () => {
         timer: 1500,
       });
 
-      navigate("/");
+      navigate("/dashboard");
     } catch (error) {
       setAuthError(error.message);
     } finally {

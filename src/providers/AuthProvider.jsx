@@ -16,7 +16,7 @@ export const AuthContext = createContext(null);
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const googleProvider = new GoogleAuthProvider();
   const axiosPublic = useAxiosPublic();
@@ -42,16 +42,16 @@ const AuthProvider = ({ children }) => {
   };
 
   const googleSignIn = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // console.log(user);
+      console.log(currentUser?.email);
 
       if (currentUser) {
-        setLoading(true);
         const userInfo = {
           email: currentUser.email,
         };
@@ -59,9 +59,9 @@ const AuthProvider = ({ children }) => {
         axiosPublic
           .post("/jwt", userInfo)
           .then((res) => {
-            setLoading(false);
             if (res.data.token) {
               localStorage.setItem("access_token", res.data.token);
+              setLoading(false);
             }
           })
           .catch((err) => {

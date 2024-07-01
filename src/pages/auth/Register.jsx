@@ -15,8 +15,9 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUserProfile, loading, setLoading } = useAuth();
+  const { createUser, updateUserProfile } = useAuth();
   const [authError, setAuthError] = useState("");
+  const [loading, setLoading] = useState(false);
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
@@ -53,7 +54,7 @@ const Register = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (err) {
       console.log(err);
@@ -62,6 +63,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
+      setLoading(true);
       setAuthError("");
       await registerUser(data.email, data.password);
       await profileUpdate(data.name);

@@ -21,6 +21,7 @@ import Payment from "../pages/dashboard/taskCreator/payment/Payment";
 import ErrorPage from "../pages/error/ErrorPage";
 import ManageUsers from "../pages/dashboard/admin/ManageUsers";
 import ManageTasks from "../pages/dashboard/admin/ManageTasks";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -68,11 +69,19 @@ export const router = createBrowserRouter([
 
       {
         path: "taskList",
-        element: <TaskList />,
+        element: (
+          <PrivateRoute>
+            <TaskList />
+          </PrivateRoute>
+        ),
       },
       {
         path: "taskList/:taskId",
-        element: <TaskDetails />,
+        element: (
+          <PrivateRoute>
+            <TaskDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "mySubmissions",
