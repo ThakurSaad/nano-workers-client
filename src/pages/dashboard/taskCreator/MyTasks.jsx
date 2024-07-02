@@ -3,7 +3,7 @@ import SectionTitle from "../../../components/SectionTitle";
 import useUser from "../../../hooks/useUser";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Loader from "../../../components/Loader";
-import { FaCoins } from "react-icons/fa";
+import { FaCoins, FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -29,7 +29,8 @@ const MyTasks = () => {
   const deleteFromToDB = async (idAndCoinAndEmail) => {
     try {
       Swal.fire({
-        title: "Confirm deletion? You can't undo it",
+        title: "Confirm Delete",
+        text: `Once deleted it can't be undone. Deleting Task ${idAndCoinAndEmail.id}`,
         showCancelButton: true,
         confirmButtonText: "Yes",
       }).then(async (result) => {
@@ -42,11 +43,11 @@ const MyTasks = () => {
           fetchUser();
 
           if (res.data.deletedCount) {
-            Swal.fire(`Deleted`, "Your coins have been refunded", "success");
+            Swal.fire("Successful", `You have deleted the task`, "success");
           } else {
             Swal.fire(
               "Something went wrong",
-              "Please try again after hard reload (ctrl + shift + R)",
+              "If this issue persist please try again after hard reload (ctrl + shift + R)",
               "error"
             );
           }
@@ -124,13 +125,15 @@ const MyTasks = () => {
                     <td className="min-w-40 px-1">{task.current_time}</td>
                     <td className="min-w-40 px-1">{task.completion_date}</td>
                     <td>
-                      <button className="btn btn-sm bg-orange-100 text-customOrange uppercase">
-                        <Link to={`${task._id}`}>Update</Link>
+                      <button className="btn btn-sm bg-customOrange hover:text-neutral text-white uppercase">
+                        <Link to={`${task._id}`}>
+                          <FaEdit className="text-xl" />
+                        </Link>
                       </button>
                     </td>
                     <td>
                       <button
-                        className="btn btn-sm bg-red-100 text-red-500 uppercase"
+                        className="btn btn-sm bg-red-700 hover:text-neutral text-white uppercase"
                         onClick={() =>
                           handleDelete(
                             task._id,
@@ -138,7 +141,7 @@ const MyTasks = () => {
                           )
                         }
                       >
-                        delete
+                        <FaTrash className="text-lg" />
                       </button>
                     </td>
                   </tr>

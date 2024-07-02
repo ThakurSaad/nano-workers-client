@@ -22,6 +22,7 @@ import ErrorPage from "../pages/error/ErrorPage";
 import ManageUsers from "../pages/dashboard/admin/ManageUsers";
 import ManageTasks from "../pages/dashboard/admin/ManageTasks";
 import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -54,25 +55,37 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
 
       // worker
       {
         path: "workerHome",
-        element: <WorkerHome />,
+        element: (
+          <PrivateRoute>
+            <WorkerHome />
+          </PrivateRoute>
+        ),
       },
 
       {
         path: "taskList",
         element: (
-          <PrivateRoute>
-            <TaskList />
-          </PrivateRoute>
+          // <PrivateRoute>
+          <TaskList />
+          // </PrivateRoute>
         ),
       },
       {
@@ -85,55 +98,107 @@ export const router = createBrowserRouter([
       },
       {
         path: "mySubmissions",
-        element: <MySubmissions />,
+        element: (
+          <PrivateRoute>
+            <MySubmissions />
+          </PrivateRoute>
+        ),
       },
       {
         path: "withdrawals",
-        element: <Withdrawals />,
+        element: (
+          <PrivateRoute>
+            <Withdrawals />
+          </PrivateRoute>
+        ),
       },
 
       // task creator
       {
         path: "taskCreatorHome",
-        element: <TaskCreatorHome />,
+        element: (
+          <PrivateRoute>
+            <TaskCreatorHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "addNewTasks",
-        element: <AddNewTasks />,
+        element: (
+          <PrivateRoute>
+            <AddNewTasks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "myTasks",
-        element: <MyTasks />,
+        element: (
+          <PrivateRoute>
+            <MyTasks />
+          </PrivateRoute>
+        ),
       },
       {
         path: "myTasks/:taskId",
-        element: <UpdateTask />,
+        element: (
+          <PrivateRoute>
+            <UpdateTask />
+          </PrivateRoute>
+        ),
       },
       {
         path: "purchaseCoins",
-        element: <PurchaseCoins />,
+        element: (
+          <PrivateRoute>
+            <PurchaseCoins />
+          </PrivateRoute>
+        ),
       },
       {
         path: "purchaseCoins/:title",
-        element: <Payment />,
+        element: (
+          <PrivateRoute>
+            <Payment />
+          </PrivateRoute>
+        ),
       },
       {
         path: "paymentHistory",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
       },
 
       // admin
       {
         path: "adminHome",
-        element: <AdminHome />,
+        element: (
+          <PrivateRoute>
+            <AdminHome />
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageUsers",
-        element: <ManageUsers />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
       {
         path: "manageTasks",
-        element: <ManageTasks />,
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageTasks />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -6,7 +6,11 @@ const useUser = () => {
   const axiosPrivate = useAxiosPrivate();
   const { user: firebaseUser } = useAuth();
 
-  const { data: user = {}, refetch } = useQuery({
+  const {
+    data: user = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["user", firebaseUser?.email],
     queryFn: async () => {
       const res = await axiosPrivate.get(`/user/${firebaseUser?.email}`);
@@ -15,7 +19,7 @@ const useUser = () => {
     enabled: !!firebaseUser?.email,
   });
 
-  return { user, refetch };
+  return { user, isLoading, refetch };
 };
 
 export default useUser;

@@ -144,7 +144,7 @@ const DashboardNavItems = () => {
       <li>
         <button onClick={handleLogOut}>
           <FaSignOutAlt className="text-lg" />
-          Sign Out
+          Logout
         </button>
       </li>
       <li>

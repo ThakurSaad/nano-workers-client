@@ -51,7 +51,7 @@ const Login = () => {
       <div className="md:flex md:items-center">
         <div className="md:w-1/2">
           {loading ? (
-            <Loader height="h-screen" />
+            <Loader height="min-h-full" />
           ) : (
             <>
               <div className="text-center mt-10 md:mt-20 mb-10">
@@ -61,6 +61,12 @@ const Login = () => {
                     "Please log in to continue managing your tasks and projects"
                   }
                 />
+                <p className="mx-2">
+                  <span className="inline-block bg-gray-100 text-gray-500 rounded-lg px-2 py-1">
+                    For any issues (e.g. loading, API errors) that persists for
+                    long, kindly logout and then login again.
+                  </span>
+                </p>
               </div>
               <div>
                 <form

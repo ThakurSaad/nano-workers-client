@@ -21,7 +21,6 @@ const UpdateTask = () => {
 
   const updateToDB = async (updatedTask) => {
     try {
-      console.log(updatedTask);
       Swal.fire({
         title: "Confirm Update",
         text: "Are you sure you want to update the task?",
