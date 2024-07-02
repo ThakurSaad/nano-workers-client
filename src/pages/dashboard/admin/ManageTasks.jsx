@@ -105,7 +105,7 @@ const ManageTasks = () => {
         <p className="text-gray-600 mt-2 mb-4">
           <span className="inline-block bg-gray-200 text-customOrange rounded-lg px-2 py-1">
             Task&apos;s past the deadline are tagged as &nbsp;
-            <FaRegClock className="inline" /> expired.&nbsp;
+            <FaRegClock className="inline" /> expired.
           </span>
           &nbsp;You may delete them.
         </p>

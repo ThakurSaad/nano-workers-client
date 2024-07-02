@@ -11,7 +11,7 @@ const useUser = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["user", firebaseUser?.email],
+    queryKey: ["user", firebaseUser?.email, firebaseUser?.displayName],
     queryFn: async () => {
       const res = await axiosPrivate.get(`/user/${firebaseUser?.email}`);
       return res.data;

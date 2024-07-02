@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   console.log(loading);
-  if (loading) {
+  if (!user && loading) {
     return <Loader height="min-h-full" />;
   }
 
