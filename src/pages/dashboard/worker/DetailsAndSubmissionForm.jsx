@@ -1,8 +1,8 @@
 import {
+  FaCoins,
   FaRegCalendarAlt,
   FaRegClock,
   FaRegListAlt,
-  FaRegMoneyBillAlt,
 } from "react-icons/fa";
 import profile from "../../../assets/dashboard-default-dp.jpg";
 import { useForm } from "react-hook-form";
@@ -19,7 +19,7 @@ const DetailsAndSubmissionForm = ({
   task_detail,
   task_count,
   submission_info,
-  published_date,
+  current_time,
   completion_date,
   payable_amount,
   creator_name,
@@ -40,7 +40,7 @@ const DetailsAndSubmissionForm = ({
     return <Loader height="min-h-full" />;
   }
 
-  const saveSubmission = async (submission) => {
+  const saveSubmissionToDB = async (submission) => {
     try {
       const res = await axiosPrivate.post("/submission", submission);
       if (res.data.insertedId) {
@@ -76,7 +76,7 @@ const DetailsAndSubmissionForm = ({
         task_id: _id,
         task_title,
         task_detail,
-        payable_amount,
+        payable_amount: parseInt(payable_amount),
         worker_email: user.email,
         submission_details: data.submission_details,
         worker_name: user.displayName,
@@ -86,7 +86,7 @@ const DetailsAndSubmissionForm = ({
         status: "pending",
       };
 
-      await saveSubmission(submission);
+      await saveSubmissionToDB(submission);
     } catch (err) {
       console.log(err);
     } finally {
@@ -159,14 +159,14 @@ const DetailsAndSubmissionForm = ({
           </div>
           <hr />
           <TaskInfo
-            icon={<FaRegMoneyBillAlt />}
+            icon={<FaCoins />}
             data={payable_amount}
             description="You will earn for this job"
           />
           <hr />
           <TaskInfo
             icon={<FaRegCalendarAlt />}
-            data={published_date}
+            data={current_time}
             description="Published date"
           />
           <hr />

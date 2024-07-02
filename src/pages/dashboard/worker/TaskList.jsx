@@ -22,7 +22,7 @@ const TaskList = () => {
             _id={task._id}
             task_title={task.task_title}
             task_count={task.task_count}
-            published_date={task.published_date}
+            current_time={task.current_time}
             payable_amount={task.payable_amount}
             completion_date={task.completion_date}
             creator_name={task.creator_name}

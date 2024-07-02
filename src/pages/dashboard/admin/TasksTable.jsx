@@ -62,7 +62,7 @@ const TasksTable = ({
                         task.task_count,
                         task.payable_amount,
                         task.completion_date,
-                        task.published_date,
+                        task.current_time,
                         task.creator_name,
                         task.creator_email
                       )

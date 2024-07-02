@@ -79,12 +79,12 @@ const Withdrawals = () => {
       const withdraw = {
         worker_email: user_email,
         worker_name: display_name,
-        withdraw_coin,
-        withdraw_amount,
+        withdraw_coin: parseInt(withdraw_coin),
+        withdraw_amount: parseInt(withdraw_amount),
         payment_system,
         withdraw_time: currentDateTime,
       };
-
+      
       await saveWithdrawToDB(withdraw);
     }
   };

@@ -15,7 +15,7 @@ const TaskDetails = () => {
     task_detail,
     task_count,
     submission_info,
-    published_date,
+    current_time,
     completion_date,
     payable_amount,
     creator_name,
@@ -38,7 +38,7 @@ const TaskDetails = () => {
           task_detail={task_detail}
           task_count={task_count}
           submission_info={submission_info}
-          published_date={published_date}
+          current_time={current_time}
           completion_date={completion_date}
           payable_amount={payable_amount}
           creator_name={creator_name}

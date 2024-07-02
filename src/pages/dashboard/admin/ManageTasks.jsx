@@ -62,22 +62,22 @@ const ManageTasks = () => {
     task_count,
     payable_amount,
     completion_date,
-    published_date,
+    current_time,
     creator_name,
     creator_email
   ) => {
     Swal.fire(
-      "Viewing Details",
+      `${task_title}`,
       `
       <div style="text-align: start;">
-        <p>Task Id : ${_id} </p>
-        <p>Task Title : ${task_title} </p>
         <p>Task Detail : ${task_detail} </p>
+        </br>
         <p>Submission Info : ${submission_info} </p>
+        <p>Task Id : ${_id} </p>
         <p>Task Count : ${task_count} </p>
         <p>Payable Amount : ${payable_amount} coins per task </p>
         <p>Total Amount : ${payable_amount * task_count} coins </p>
-        <p>Published : ${published_date} </p>
+        <p>Published : ${current_time} </p>
         <p>Deadline : ${completion_date} </p>
         <p>Task Creator : ${creator_name} </p>
         <p>Task Creator Email : ${creator_email} </p>
