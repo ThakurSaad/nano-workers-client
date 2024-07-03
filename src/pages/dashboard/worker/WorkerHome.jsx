@@ -1,3 +1,4 @@
+import { FaCheckCircle } from "react-icons/fa";
 import Loader from "../../../components/Loader";
 import SectionTitle from "../../../components/SectionTitle";
 import useSubmissions from "../../../hooks/useSubmissions";
@@ -57,19 +58,26 @@ const WorkerHome = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {approved.map((submission, index) => (
-                      <tr key={submission._id}>
-                        <td>{index + 1}</td>
-                        <td>{submission.task_title}</td>
-                        <td>{submission.payable_amount}</td>
-                        <td>{submission.creator_name}</td>
-                        <td>
-                          <span className="text-green-600 bg-green-100 px-3 py-1 rounded">
-                            {submission.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                    {approved.map((submission, index) => {
+                      const modifiedTitle =
+                        submission.task_title.length > 24
+                          ? `${submission.task_title.substring(0, 24)}...`
+                          : submission.task_title;
+                      return (
+                        <tr key={submission._id}>
+                          <td>{index + 1}</td>
+                          <td className="min-w-56">{modifiedTitle}</td>
+                          <td>{submission.payable_amount}</td>
+                          <td>{submission.creator_name}</td>
+                          <td className="min-w-36">
+                            <span className="text-green-600 bg-green-100 font-semibold px-2 py-1 rounded">
+                              <FaCheckCircle className="inline" />{" "}
+                              {submission.status}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
