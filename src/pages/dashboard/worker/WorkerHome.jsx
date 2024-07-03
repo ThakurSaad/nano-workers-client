@@ -25,7 +25,7 @@ const WorkerHome = () => {
         <div>
           <h3 className="text-xl">Available Coins</h3>
           <p className="text-gray-500 mb-4">
-            You have <span>{user?.coin}</span> coins
+            You have <span>{user?.coin}</span> coins.
           </p>
           <h3 className="text-xl">Total Submissions</h3>
           <p className="text-gray-500 mb-4">
@@ -35,7 +35,7 @@ const WorkerHome = () => {
         </div>
 
         <div>
-          <h3 className="text-xl mb-2">Approved Submissions</h3>
+          <h3 className="text-xl">Approved Submissions</h3>
           {approved.length ? (
             <>
               <p className="text-gray-500 mb-4">

@@ -91,65 +91,76 @@ const MyTasks = () => {
         <p className="text-gray-500 mb-4">You can delete a specific task</p>
       </div>
       <div>
-        <h4 className="text-lg mb-2">Total Tasks: {myTasks.length}</h4>
-        <div className="overflow-x-auto">
-          <table className="table w-full border rounded">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Task Title</th>
-                <th>Task Quantity</th>
-                <th>Payable Amount (total)</th>
-                <th>Posted</th>
-                <th>Deadline</th>
-                <th>Action</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {myTasks.map((task, index) => {
-                const modifiedTitle =
-                  task.task_title.length > 15
-                    ? `${task.task_title.substring(0, 15)}...`
-                    : task.task_title;
-                return (
-                  <tr key={task._id}>
-                    <td>{index + 1}</td>
-                    <td className="min-w-40">{modifiedTitle}</td>
-                    <td>{task.task_count}</td>
-                    <td>
-                      {task.payable_amount}
-                      <FaCoins className="text-lg mx-2 inline text-customOrange" />
-                      ({task.task_count * task.payable_amount})
-                    </td>
-                    <td className="min-w-40 px-1">{task.current_time}</td>
-                    <td className="min-w-40 px-1">{task.completion_date}</td>
-                    <td>
-                      <button className="btn btn-sm bg-customOrange hover:text-neutral text-white uppercase">
-                        <Link to={`${task._id}`}>
-                          <FaEdit className="text-xl" />
-                        </Link>
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        className="btn btn-sm bg-red-700 hover:text-neutral text-white uppercase"
-                        onClick={() =>
-                          handleDelete(
-                            task._id,
-                            task.task_count * task.payable_amount
-                          )
-                        }
-                      >
-                        <FaTrash className="text-lg" />
-                      </button>
-                    </td>
+        <h4 className={`text-lg`}>Total Tasks: {myTasks.length}</h4>
+        {myTasks.length ? (
+          <>
+            <p className="text-gray-500 mb-4">
+              Viewing in descending order based on time
+            </p>
+            <div className="overflow-x-auto">
+              <table className="table w-full border rounded">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Task Title</th>
+                    <th>Task Quantity</th>
+                    <th>Payable Amount (total)</th>
+                    <th>Posted</th>
+                    <th>Deadline</th>
+                    <th>Action</th>
+                    <th>Action</th>
                   </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                </thead>
+                <tbody>
+                  {myTasks.map((task, index) => {
+                    const modifiedTitle =
+                      task.task_title.length > 15
+                        ? `${task.task_title.substring(0, 15)}...`
+                        : task.task_title;
+                    return (
+                      <tr key={task._id}>
+                        <td>{index + 1}</td>
+                        <td className="min-w-40">{modifiedTitle}</td>
+                        <td>{task.task_count}</td>
+                        <td>
+                          {task.payable_amount}
+                          <FaCoins className="text-lg mx-2 inline text-customOrange" />
+                          ({task.task_count * task.payable_amount})
+                        </td>
+                        <td className="min-w-40 px-1">{task.current_time}</td>
+                        <td className="min-w-40 px-1">
+                          {task.completion_date}
+                        </td>
+                        <td>
+                          <button className="btn btn-sm bg-customOrange hover:text-neutral text-white uppercase">
+                            <Link to={`${task._id}`}>
+                              <FaEdit className="text-xl" />
+                            </Link>
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className="btn btn-sm bg-red-700 hover:text-neutral text-white uppercase"
+                            onClick={() =>
+                              handleDelete(
+                                task._id,
+                                task.task_count * task.payable_amount
+                              )
+                            }
+                          >
+                            <FaTrash className="text-lg" />
+                          </button>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>
+        ) : (
+          <p className="text-gray-500 mb-4">You have not posted any tasks.</p>
+        )}
       </div>
     </section>
   );
