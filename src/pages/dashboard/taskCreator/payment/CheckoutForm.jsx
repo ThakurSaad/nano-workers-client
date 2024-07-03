@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAxiosPrivate from "../../../../hooks/useAxiosPrivate";
 import useUser from "../../../../hooks/useUser";
 import Swal from "sweetalert2";
-import { FaArrowRight, FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaExternalLinkAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useDateTime from "../../../../hooks/useDateTime";
 
@@ -142,7 +142,8 @@ const CheckoutForm = ({ dollars, coins }) => {
               className="flex items-center hover:underline"
               to="/dashboard/paymentHistory"
             >
-              Go to payment history <FaArrowRight className="ml-1" />
+              Go to payment history{" "}
+              <FaExternalLinkAlt className="inline text-xs ml-1" />
             </Link>
           </p>
         </div>
@@ -170,7 +171,6 @@ const CheckoutForm = ({ dollars, coins }) => {
             }}
           />
           <div className="text-center">
-            {/* {loading && <p className="text-customOrange mt-6 mb-3">Processing...</p>} */}
             <p className="text-red-600 mt-6 mb-3">{error}</p>
             <button
               className="btn btn-neutral btn-sm w-40 mx-auto uppercase disabled:text-gray-500"

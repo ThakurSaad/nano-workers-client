@@ -38,8 +38,8 @@ const ReviewTasksTable = ({
               <tr key={submission._id}>
                 <td>{index + 1}</td>
                 <td className="min-w-56">{modifiedTitle}</td>
-                <td>{submission.creator_name}</td>
-                <td>{submission.creator_email}</td>
+                <td>{submission.worker_name}</td>
+                <td>{submission.worker_email}</td>
                 <td className="text-center">
                   {submission.payable_amount}
                   <FaCoins className="text-lg mx-2 inline text-customOrange" />
