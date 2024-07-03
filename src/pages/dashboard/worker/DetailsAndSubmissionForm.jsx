@@ -42,20 +42,29 @@ const DetailsAndSubmissionForm = ({
 
   const saveSubmissionToDB = async (submission) => {
     try {
-      const res = await axiosPrivate.post("/submission", submission);
-      if (res.data.insertedId) {
-        Swal.fire(
-          `Successful`,
-          `Your submission has been sent to the client. <br/> Please wait for confirmation.`,
-          "success"
-        );
-      } else {
-        Swal.fire(
-          `Something went wrong`,
-          `Please try again after hard reload (ctrl + shift + R)`,
-          "error"
-        );
-      }
+      Swal.fire({
+        title: "Confirm Submission",
+        text: "Are You sure you want to submit your work?",
+        showCancelButton: true,
+        confirmButtonText: "Yes",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await axiosPrivate.post("/submission", submission);
+          if (res.data.insertedId) {
+            Swal.fire(
+              `Successful`,
+              `Your submission has been sent to the client. <br/> Please wait for confirmation.`,
+              "success"
+            );
+          } else {
+            Swal.fire(
+              `Something went wrong`,
+              `Please try again after hard reload (ctrl + shift + R)`,
+              "error"
+            );
+          }
+        }
+      });
     } catch (err) {
       if (err) {
         Swal.fire({

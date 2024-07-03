@@ -22,7 +22,7 @@ const TasksTable = ({
           </tr>
         </thead>
         <tbody>
-          {taskList.map((task, index) => {
+          {taskList?.map((task, index) => {
             const modifiedTitle =
               task.task_title.length > 15
                 ? `${task.task_title.substring(0, 15)}...`
