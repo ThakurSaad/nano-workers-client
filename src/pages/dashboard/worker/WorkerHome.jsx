@@ -18,7 +18,10 @@ const WorkerHome = () => {
   return (
     <section>
       <div>
-        <SectionTitle heading={"My Home"} />
+        <SectionTitle
+          heading={"My Home"}
+          subHeading={"Welcome to your dashboard"}
+        />
       </div>
 
       <div>

@@ -1,22 +1,11 @@
 import { FaCoins, FaExternalLinkAlt } from "react-icons/fa";
 import SectionTitle from "../../../components/SectionTitle";
-import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
-import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import Loader from "../../../components/Loader";
 import { Link } from "react-router-dom";
+import usePayments from "../../../hooks/usePayments";
 
 const PaymentHistory = () => {
-  const axiosPrivate = useAxiosPrivate();
-  const { user } = useAuth();
-
-  const { data: payments = [], isLoading } = useQuery({
-    queryKey: ["payments", user?.email],
-    queryFn: async () => {
-      const res = await axiosPrivate.get(`/payments/${user?.email}`);
-      return res.data;
-    },
-  });
+  const { payments, isLoading } = usePayments();
 
   if (isLoading) {
     return <Loader height="min-h-full" />;
@@ -67,7 +56,7 @@ const PaymentHistory = () => {
             className="text-blue-600 hover:underline"
             to="/dashboard/purchaseCoins"
           >
-            Purchase Coins <FaExternalLinkAlt className="inline text-sm"/>{" "}
+            Purchase Coins <FaExternalLinkAlt className="inline text-sm" />{" "}
           </Link>{" "}
           and select the package fitted for you.
         </p>

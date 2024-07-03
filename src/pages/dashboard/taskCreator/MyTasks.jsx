@@ -1,30 +1,17 @@
-import { useQuery } from "@tanstack/react-query";
 import SectionTitle from "../../../components/SectionTitle";
 import useUser from "../../../hooks/useUser";
 import useAxiosPrivate from "../../../hooks/useAxiosPrivate";
 import Loader from "../../../components/Loader";
 import { FaCoins, FaEdit, FaTrash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useMyTasks from "../../../hooks/useMyTasks";
 
 const MyTasks = () => {
   const { user, refetch: fetchUser } = useUser();
   const axiosPrivate = useAxiosPrivate();
-
-  const {
-    data: myTasks = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["myTasks", user?.user_email],
-    queryFn: async () => {
-      const res = await axiosPrivate.get(`/myTasks/${user?.user_email}`);
-      const myTasks = res.data.sort(
-        (a, b) => new Date(b.current_time) - new Date(a.current_time)
-      );
-      return myTasks;
-    },
-  });
+  const navigate = useNavigate();
+  const { myTasks, isLoading, refetch } = useMyTasks();
 
   const deleteFromToDB = async (idAndCoinAndEmail) => {
     try {
@@ -95,7 +82,7 @@ const MyTasks = () => {
         {myTasks.length ? (
           <>
             <p className="text-gray-500 mb-4">
-              Viewing in descending order based on time
+              Viewing in descending order based on posting time
             </p>
             <div className="overflow-x-auto">
               <table className="table w-full border rounded">
@@ -121,8 +108,8 @@ const MyTasks = () => {
                       <tr key={task._id}>
                         <td>{index + 1}</td>
                         <td className="min-w-40">{modifiedTitle}</td>
-                        <td>{task.task_count}</td>
-                        <td>
+                        <td className="text-center">{task.task_count}</td>
+                        <td className="text-center">
                           {task.payable_amount}
                           <FaCoins className="text-lg mx-2 inline text-customOrange" />
                           ({task.task_count * task.payable_amount})
@@ -132,10 +119,11 @@ const MyTasks = () => {
                           {task.completion_date}
                         </td>
                         <td>
-                          <button className="btn btn-sm bg-customOrange hover:text-neutral text-white uppercase">
-                            <Link to={`${task._id}`}>
-                              <FaEdit className="text-xl" />
-                            </Link>
+                          <button
+                            className="btn btn-sm bg-customOrange hover:text-neutral text-white uppercase"
+                            onClick={() => navigate(task._id)}
+                          >
+                            <FaEdit className="text-xl" />
                           </button>
                         </td>
                         <td>

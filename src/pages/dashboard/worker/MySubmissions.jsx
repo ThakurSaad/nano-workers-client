@@ -18,7 +18,8 @@ const MySubmissions = () => {
     worker_email,
     creator_name,
     creator_email,
-    current_date
+    current_date,
+    status
   ) => {
     Swal.fire(
       `${task_title}`,
@@ -35,6 +36,7 @@ const MySubmissions = () => {
         <p>Your Name : ${worker_name} </p>
         <p>Your Email : ${worker_email} </p>
         <p>Submitted at : ${current_date} </p>
+        <p>Status : ${status} </p>
       </div>
       `,
       "info"
