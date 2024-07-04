@@ -106,8 +106,8 @@ const CheckoutForm = ({ dollars, coins }) => {
     if (confirmError) {
       setTransactionId("");
       Swal.fire(
-        `${confirmError.message}`,
-        "If this persist please hard reload (ctrl + shift + R) the page",
+        `Error`,
+        `${confirmError.message}</br>If this persist please hard reload (ctrl + shift + R) the page`,
         "error"
       );
     } else {

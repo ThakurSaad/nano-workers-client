@@ -28,9 +28,10 @@ const AddNewTasks = () => {
   const saveTaskToDB = async (task) => {
     try {
       Swal.fire({
-        title: "Are you sure you want to add the task?",
+        icon: "question",
+        title: "Confirm Publish",
+        text: "Make sure you have provided correct task count, payable amount and deadline. Once published these fields can't be updated",
         showCancelButton: true,
-        confirmButtonText: "Yes",
       }).then(async (result) => {
         if (result.isConfirmed) {
           setLoading(true);
@@ -42,7 +43,9 @@ const AddNewTasks = () => {
             refetch();
             Swal.fire(
               `Successful!`,
-              `Task id ${res.data.insertedId}`,
+              `Task id ${res.data.insertedId}. </br> ${
+                task.task_count * task.payable_amount
+              } coins have been deducted from your account`,
               "success"
             );
           } else {

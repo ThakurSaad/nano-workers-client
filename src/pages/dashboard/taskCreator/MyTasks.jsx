@@ -17,7 +17,7 @@ const MyTasks = () => {
     try {
       Swal.fire({
         title: "Confirm Delete",
-        text: `Once deleted it can't be undone. Deleting Task ${idAndCoinAndEmail.id}`,
+        text: `After successful deletion, you will be refunded with ${idAndCoinAndEmail.coin} coins. Deleting Task ${idAndCoinAndEmail.id}`,
         showCancelButton: true,
         confirmButtonText: "Yes",
       }).then(async (result) => {
@@ -30,7 +30,11 @@ const MyTasks = () => {
           fetchUser();
 
           if (res.data.deletedCount) {
-            Swal.fire("Successful", `You have deleted the task`, "success");
+            Swal.fire(
+              "Successful",
+              `You have deleted the task.</br>Your ${idAndCoinAndEmail.coin} coins have been refunded`,
+              "success"
+            );
           } else {
             Swal.fire(
               "Something went wrong",
