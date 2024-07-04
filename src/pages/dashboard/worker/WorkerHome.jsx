@@ -3,14 +3,17 @@ import Loader from "../../../components/Loader";
 import SectionTitle from "../../../components/SectionTitle";
 import useSubmissions from "../../../hooks/useSubmissions";
 import useUser from "../../../hooks/useUser";
+import useSumFunction from "../../../hooks/useSumFunction";
 
 const WorkerHome = () => {
   const { submissions, isLoading } = useSubmissions();
   const { user } = useUser();
-
+  const sumFunction = useSumFunction();
   const approved = submissions?.filter(
     (submission) => submission.status === "approved"
   );
+  const totalCoins = sumFunction(approved, "payable_amount");
+  const totalAmount = Math.round(totalCoins / 20);
 
   if (isLoading) {
     return <Loader height="min-h-full" />;
@@ -27,14 +30,33 @@ const WorkerHome = () => {
 
       <div>
         <div>
+          <h3 className="text-xl">Total Earnings</h3>
+          <p className="text-gray-500 mb-4">
+            You have earned total&nbsp;
+            <span className="text-customOrange font-semibold">
+              {totalCoins}
+            </span>
+            &nbsp;coins amounting around{" "}
+            <span className="text-customOrange font-semibold">
+              {totalAmount}
+            </span>{" "}
+            dollars 🎉
+          </p>
           <h3 className="text-xl">Available Coins</h3>
           <p className="text-gray-500 mb-4">
-            You have <span>{user?.coin}</span> coins.
+            You have{" "}
+            <span className="text-customOrange font-semibold">
+              {user?.coin}
+            </span>{" "}
+            coins.
           </p>
           <h3 className="text-xl">Total Submissions</h3>
           <p className="text-gray-500 mb-4">
-            You have submitted total {submissions.length} tasks. Please wait for
-            the client&apos;s review
+            You have submitted total{" "}
+            <span className="text-customOrange font-semibold">
+              {submissions.length}
+            </span>{" "}
+            tasks. Please wait for the client&apos;s review
           </p>
         </div>
 
@@ -43,8 +65,11 @@ const WorkerHome = () => {
           {approved.length ? (
             <>
               <p className="text-gray-500 mb-4">
-                Total {approved.length} submissions have been reviewed by the
-                client
+                Total&nbsp;
+                <span className="text-customOrange font-semibold">
+                  {approved.length}
+                </span>
+                &nbsp;submissions have been reviewed by the client
               </p>
               <div className="overflow-x-auto">
                 <table className="table w-full border rounded">
