@@ -195,14 +195,16 @@ const TaskCreatorHome = () => {
         )}
       </div>
 
-      <div>
+      {submissions.length ? (
         <ReviewTasksTable
           submissions={submissions}
           handleViewDetails={handleViewDetails}
           handleReject={handleReject}
           handleApprove={handleApprove}
         />
-      </div>
+      ) : (
+        ""
+      )}
     </section>
   );
 };

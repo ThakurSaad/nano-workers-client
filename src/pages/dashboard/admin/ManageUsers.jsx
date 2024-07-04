@@ -153,7 +153,10 @@ const ManageUsers = () => {
       </div>
 
       <div>
-        <h3 className="text-xl my-4">Number of admins : {adminUsers.length}</h3>
+        <h3 className="text-xl mt-4">Number of admins : {adminUsers.length}</h3>
+        <p className="text-gray-500 mb-4">
+          Admins have special privileges. Actions are restricted.
+        </p>
         <UsersTable
           handleDelete={handleDelete}
           handleSubmit={handleSubmit}

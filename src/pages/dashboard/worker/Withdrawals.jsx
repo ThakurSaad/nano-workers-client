@@ -26,9 +26,10 @@ const Withdrawals = () => {
   const saveWithdrawToDB = async (withdraw) => {
     try {
       Swal.fire({
-        title: "Confirm withdraw?",
+        icon: "question",
+        title: "Confirm withdraw",
+        text: `Are you sure you want to withdraw ${withdraw.withdraw_coin} coins amounting ${withdraw.withdraw_amount} dollars?`,
         showCancelButton: true,
-        confirmButtonText: "Yes",
       }).then(async (result) => {
         if (result.isConfirmed) {
           setLoading(true);
@@ -41,7 +42,7 @@ const Withdrawals = () => {
 
             Swal.fire(
               "Successful",
-              `You have withdraw $${withdrawAmount}`,
+              `You have requested withdrawal of $${withdrawAmount}. </br>You will be notified as soon as your request is reviewed`,
               "success"
             );
           } else {
@@ -70,11 +71,17 @@ const Withdrawals = () => {
     const { withdraw_coin, withdraw_amount, payment_system } = data;
 
     if (withdraw_amount > maxWithdrawalAmount) {
-      Swal.fire({
-        icon: "error",
-        title: "Request Rejected",
-        text: "You can't withdraw more than maximum withdrawal amount!",
-      });
+      Swal.fire(
+        "Request Rejected",
+        "You can't withdraw more than maximum withdrawal amount!",
+        "error"
+      );
+    } else if (withdraw_coin % 20 !== 0) {
+      Swal.fire(
+        "Request Rejected",
+        "Please withdraw coins in multiples of 20 (e.g. 20, 40, 60, 100, 1000 etc.)",
+        "error"
+      );
     } else {
       const withdraw = {
         worker_email: user_email,
@@ -84,7 +91,7 @@ const Withdrawals = () => {
         payment_system,
         withdraw_time: currentDateTime,
       };
-      
+
       await saveWithdrawToDB(withdraw);
     }
   };
@@ -110,6 +117,8 @@ const Withdrawals = () => {
             <strong className="text-customOrange">
               ${maxWithdrawalAmount}
             </strong>
+            . &nbsp;Please withdraw coins in multiples of 20 (e.g., 20, 40, 60,
+            100, 1000 etc.)
           </p>
           <hr />
         </div>

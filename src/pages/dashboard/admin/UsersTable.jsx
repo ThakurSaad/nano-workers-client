@@ -55,6 +55,7 @@ const UsersTable = ({
                     <button
                       type="submit"
                       className="btn btn-sm border-2 border-customOrange rounded-l-none bg-customOrange hover:text-neutral text-white uppercase -ml-3"
+                      disabled={user.role === "admin"}
                     >
                       <FaEdit className="text-xl" />
                     </button>
@@ -63,6 +64,7 @@ const UsersTable = ({
                 <td>
                   <button
                     className="btn btn-sm bg-red-700 hover:text-neutral text-white uppercase"
+                    disabled={user.role === "admin"}
                     onClick={() => handleDelete(user._id)}
                   >
                     <FaTrash className="text-lg" />

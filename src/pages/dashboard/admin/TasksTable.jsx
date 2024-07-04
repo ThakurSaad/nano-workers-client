@@ -1,4 +1,4 @@
-import { FaCoins, FaInfoCircle, FaTrash } from "react-icons/fa";
+import { FaCoins, FaInfoCircle, FaRegClock, FaTrash } from "react-icons/fa";
 
 const TasksTable = ({
   taskList = [],
@@ -46,8 +46,8 @@ const TasksTable = ({
                   {available ? (
                     task.completion_date
                   ) : (
-                    <span className="inline-block bg-gray-200 rounded-lg px-2 py-1">
-                      Expired
+                    <span className="inline-block bg-gray-200 text-gray-600 rounded-lg font-semibold px-2 py-1">
+                      <FaRegClock className="inline" /> expired
                     </span>
                   )}
                 </td>

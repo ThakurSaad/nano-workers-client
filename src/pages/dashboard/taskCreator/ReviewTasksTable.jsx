@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 
 const ReviewTasksTable = ({
-  submissions = [],
+  submissions,
   handleViewDetails,
   handleReject,
   handleApprove,
