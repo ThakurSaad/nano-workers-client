@@ -1,4 +1,4 @@
-import { FaCheck, FaExternalLinkAlt } from "react-icons/fa";
+import { FaCheck, FaExternalLinkAlt, FaInfoCircle } from "react-icons/fa";
 import profile from "../../../assets/profile.jpg";
 
 const ProfileUI = ({
@@ -50,7 +50,7 @@ const ProfileUI = ({
           <li>Best photo is 450*450 px (height*width).</li>
           <li>
             Height and width max variation
-            <ul className="list-disc text-gray-500 pl-8 mb-4">
+            <ul className="list-disc text-gray-500 pl-8">
               <li>Height 446-450 px</li>
               <li>Width 446-450 px</li>
             </ul>
@@ -135,10 +135,12 @@ const ProfileUI = ({
                 "upload"
               )}
             </button>
-            <p className="text-gray-500 my-4">
-              <strong>Note:</strong>
-              &nbsp;Sometimes processing may take upto 1 minute.
-            </p>
+            {loading && (
+              <p className="text-gray-500 my-4">
+                <strong><FaInfoCircle className="inline" /></strong>
+                &nbsp;Sometimes processing may take upto 1 minute.
+              </p>
+            )}
           </div>
         </form>
       </div>
