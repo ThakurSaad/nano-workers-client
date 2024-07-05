@@ -112,7 +112,7 @@ const Withdrawals = () => {
             You have <span>{coin}</span> coins. 1 dollar = 20 coins
           </p>
           <h3 className="text-xl mt-4">Maximum Withdrawal Amount</h3>
-          <p className="text-gray-500 mb-4">
+          <p className="text-gray-500">
             You can currently withdraw{" "}
             <strong className="text-customOrange">
               ${maxWithdrawalAmount}
@@ -120,8 +120,10 @@ const Withdrawals = () => {
             . &nbsp;Please withdraw coins in multiples of 20 (e.g., 20, 40, 60,
             100, 1000 etc.)
           </p>
-          <hr />
         </div>
+
+        <div className="divider"></div>
+
         <div className="min-h-full bg-gray-100 flex items-center justify-center mt-4">
           <div className="w-full max-w-md p-8 space-y-6 bg-white rounded shadow-md m-4">
             <h2 className="text-2xl font-bold text-center">Withdrawal Form</h2>

@@ -135,6 +135,10 @@ const ProfileUI = ({
                 "upload"
               )}
             </button>
+            <p className="text-gray-500 my-4">
+              <strong>Note:</strong>
+              &nbsp;Sometimes processing may take upto 1 minute.
+            </p>
           </div>
         </form>
       </div>

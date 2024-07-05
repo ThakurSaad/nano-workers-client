@@ -37,7 +37,7 @@ const NavbarUpper = () => {
                 className="border-2 border-gray-200 hover:scale-105 duration-75 hover:cursor-pointer w-12 sm:w-14 rounded-full"
                 tabIndex={2}
               >
-                <img src={defaultDp} />
+                <img src={user?.photo_url ? user.photo_url : defaultDp} />
               </div>
             </div>
             {!open ? (

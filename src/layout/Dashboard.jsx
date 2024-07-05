@@ -6,7 +6,9 @@ import NavbarUpper from "../pages/dashboard/navigation/NavbarUpper";
 const Dashboard = () => {
   return (
     <section className="max-w-screen-2xl mx-auto">
-      <NavbarUpper />
+      <div>
+        <NavbarUpper />
+      </div>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content m-4 md:mx-8">

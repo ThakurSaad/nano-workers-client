@@ -1,4 +1,4 @@
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaCoins } from "react-icons/fa";
 import Loader from "../../../components/Loader";
 import SectionTitle from "../../../components/SectionTitle";
 import useSubmissions from "../../../hooks/useSubmissions";
@@ -77,7 +77,7 @@ const WorkerHome = () => {
                     <tr>
                       <th>#</th>
                       <th>Task Title</th>
-                      <th>Payable Amount</th>
+                      <th className="text-center">Payable Amount</th>
                       <th>Creator Name</th>
                       <th>Status</th>
                     </tr>
@@ -92,7 +92,10 @@ const WorkerHome = () => {
                         <tr key={submission._id}>
                           <td>{index + 1}</td>
                           <td className="min-w-56">{modifiedTitle}</td>
-                          <td>{submission.payable_amount}</td>
+                          <td className="text-center">
+                            {submission.payable_amount}{" "}
+                            <FaCoins className="text-lg ml-1 inline text-customOrange" />
+                          </td>
                           <td>{submission.creator_name}</td>
                           <td className="min-w-36">
                             <span className="text-green-600 bg-green-100 font-semibold px-2 py-1 rounded">
