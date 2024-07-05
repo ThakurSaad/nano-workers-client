@@ -3,7 +3,7 @@ import logo from "../../../assets/nano-worker-logo.svg";
 import { FaBell, FaCoins } from "react-icons/fa";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import useUser from "../../../hooks/useUser";
-import defaultDp from "../../../assets/dashboard-default-dp.jpg";
+import defaultDp from "../../../assets/profile.jpg";
 import { useState } from "react";
 
 const NavbarUpper = () => {

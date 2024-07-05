@@ -29,6 +29,12 @@ const DashboardNavItems = () => {
   return (
     <>
       {/* common */}
+      <li>
+        <NavLink to="/dashboard/profile">
+          <FaUser className="text-lg" />
+          Profile
+        </NavLink>
+      </li>
       {user.role === "worker" && (
         <li>
           <NavLink to="/dashboard/workerHome">
@@ -53,12 +59,6 @@ const DashboardNavItems = () => {
           </NavLink>
         </li>
       )}
-      <li>
-        <NavLink to="/dashboard/profile">
-          <FaUser className="text-lg" />
-          My Profile
-        </NavLink>
-      </li>
 
       {/* worker */}
       {isWorker && (

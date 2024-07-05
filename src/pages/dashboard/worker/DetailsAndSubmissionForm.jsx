@@ -4,7 +4,7 @@ import {
   FaRegClock,
   FaRegListAlt,
 } from "react-icons/fa";
-import profile from "../../../assets/dashboard-default-dp.jpg";
+import profile from "../../../assets/profile.jpg";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
