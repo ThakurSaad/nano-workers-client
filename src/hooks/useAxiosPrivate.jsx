@@ -31,7 +31,7 @@ const useAxiosPrivate = () => {
       const status = error.response.status;
       console.log(status);
 
-      if (status === 400 || status === 401 || status === 403) {
+      if (status === 400 || status === 401) {
         await logout();
         navigate("/login");
 
@@ -39,9 +39,10 @@ const useAxiosPrivate = () => {
           Swal.fire("Bad Request", "", "error");
         } else if (status === 401) {
           Swal.fire("Unauthorized Access", "", "error");
-        } else if (status === 403) {
-          Swal.fire("Forbidden Access", "", "error"); 
         }
+      } else if (status === 403) {
+        await logout();
+        Swal.fire("Forbidden Access", "", "error");
       }
 
       return Promise.reject(error);

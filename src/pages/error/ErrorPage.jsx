@@ -9,7 +9,7 @@ const ErrorPage = () => {
     <section>
       <div>
         <div className="flex min-h-screen justify-center items-center">
-          <img className="max-h-screen" src={Img404} alt="" />
+          <img className="max-h-screen" src={Img404} alt="not-found" />
         </div>
       </div>
     </section>

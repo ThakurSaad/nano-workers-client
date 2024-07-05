@@ -23,6 +23,7 @@ import ManageUsers from "../pages/dashboard/admin/ManageUsers";
 import ManageTasks from "../pages/dashboard/admin/ManageTasks";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import ForbiddenPage from "../pages/error/ForbiddenPage";
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +49,10 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
+  {
+    path: "403",
+    element: <ForbiddenPage />,
+  },
   {
     path: "dashboard",
     element: <Dashboard />,
