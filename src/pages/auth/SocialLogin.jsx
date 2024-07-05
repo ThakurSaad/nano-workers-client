@@ -38,7 +38,7 @@ const SocialLogin = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      navigate("/");
+      navigate("/dashboard");
     }
   };
 
