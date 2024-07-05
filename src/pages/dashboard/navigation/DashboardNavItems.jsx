@@ -22,9 +22,13 @@ const DashboardNavItems = () => {
   const { user } = useUser();
   const handleLogOut = useLogout();
 
-  const isWorker = true;
-  const isTaskCreator = true;
-  const isAdmin = true;
+  const isWorker = filterRole("worker");
+  const isTaskCreator = filterRole("task-creator");
+  const isAdmin = filterRole("admin");
+
+  function filterRole(role) {
+    return user?.role === role ? true : false;
+  }
 
   return (
     <>
