@@ -51,7 +51,7 @@ const AddNewTasks = () => {
           } else {
             Swal.fire(
               "Something went wrong.",
-              "Please try again after hard reload (ctrl + shift + R)",
+              "If this issue persist please try again after hard reload (ctrl + shift + R)",
               "error"
             );
           }

@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Loader from "../../components/Loader";
 import Swal from "sweetalert2";
 
@@ -12,18 +12,58 @@ const Login = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
-  const { login } = useAuth();
+  const { login, resetPassword } = useAuth();
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState("");
+  const emailRef = useRef("");
+  const watcher = watch("email");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    emailRef.current = watcher;
+  }, [watcher]);
 
   const errorElement = (
     <p className="text-center mt-2">
       <small className="text-red-500">{authError}</small>
     </p>
   );
+
+  const handleResetPassword = async () => {
+    const email = emailRef.current;
+
+    if (!email) {
+      Swal.fire("Request Rejected", `Please enter your email.`, "error");
+    } else {
+      Swal.fire({
+        title: "Confirm Reset",
+        text: `Are you sure you want to reset your password?`,
+        showCancelButton: true,
+        icon: "question",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          resetPassword(email)
+            .then(() => {
+              Swal.fire(
+                `Successful!`,
+                `An email has been sent to ${email}.</br>Check inbox and spam folder.`,
+                "success"
+              );
+            })
+            .catch(() => {
+              Swal.fire(
+                "Something went wrong.",
+                "If this issue persist please try again after hard reload (ctrl + shift + R)",
+                "error"
+              );
+            });
+        }
+      });
+    }
+  };
 
   const onSubmit = async (data) => {
     try {
@@ -80,6 +120,7 @@ const Login = () => {
                     <input
                       type="email"
                       placeholder="Your Email"
+                      ref={emailRef}
                       className="input input-bordered bg-slate-100 focus:bg-white w-full max-w-sm"
                       {...register("email", {
                         required: { value: true, message: "Email is required" },
@@ -144,13 +185,24 @@ const Login = () => {
                 <div>{errorElement}</div>
                 <div className="text-center mt-4">
                   <small>
-                    New to Nano Workers ?{" "}
+                    New to Nano Workers?{" "}
                     <Link
                       className="text-customOrange font-semibold"
                       to="/register"
                     >
                       Register
                     </Link>
+                  </small>
+                </div>
+                <div className="text-center">
+                  <small>
+                    Forgotten Password?{" "}
+                    <button
+                      className="text-customOrange font-semibold"
+                      onClick={handleResetPassword}
+                    >
+                      Reset
+                    </button>
                   </small>
                 </div>
                 <div className="divider text-sm w-full max-w-xs mx-auto">
