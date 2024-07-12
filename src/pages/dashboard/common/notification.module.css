@@ -1,0 +1,16 @@
+.notification {
+  position: absolute;
+}
+@media (max-width: 519px) {
+  .notification {
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (min-width: 520px) {
+  .notification {
+    right: 0px;
+  }
+}

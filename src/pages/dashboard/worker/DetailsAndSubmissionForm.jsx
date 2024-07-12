@@ -66,15 +66,8 @@ const DetailsAndSubmissionForm = ({
         }
       });
     } catch (err) {
-      if (err) {
-        Swal.fire({
-          position: "top-end",
-          icon: "error",
-          title: `${err.message}. Please try again`,
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      }
+      setLoading(false);
+      console.log(err.message);
     }
   };
 

@@ -1,10 +1,11 @@
 import { BsList } from "react-icons/bs";
 import logo from "../../../assets/nano-worker-logo.svg";
-import { FaBell, FaCoins } from "react-icons/fa";
+import { FaCoins } from "react-icons/fa";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import useUser from "../../../hooks/useUser";
 import defaultDp from "../../../assets/profile.jpg";
 import { useState } from "react";
+import Notification from "../common/Notification";
 
 const NavbarUpper = () => {
   const { user } = useUser();
@@ -16,7 +17,7 @@ const NavbarUpper = () => {
 
   return (
     <div>
-      <div className="navbar bg-orange-50 text-black">
+      <div className="navbar relative bg-orange-50 text-black">
         <div className="hidden xs:block flex-1 md:ml-5">
           <img className="w-60" src={logo} alt="logo" />
         </div>
@@ -62,14 +63,7 @@ const NavbarUpper = () => {
           </div>
 
           {/* notification */}
-          <div>
-            <button className="ml-5 flex">
-              <FaBell className="text-5xl hover:scale-105 duration-75 bg-orange-200 border-2 rounded-full w-12 h-12 sm:w-14 sm:h-14 p-2 sm:p-3" />
-              <div className="relative z-50 badge badge-sm sm:badge-md bg-error text-white -ml-3">
-                99
-              </div>
-            </button>
-          </div>
+          <Notification />
 
           {/* navigation panel button for sm device */}
           <label
