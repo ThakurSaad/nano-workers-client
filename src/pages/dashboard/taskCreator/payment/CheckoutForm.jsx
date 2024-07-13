@@ -172,24 +172,24 @@ const CheckoutForm = ({ dollars, coins }) => {
           />
           <div className="text-center">
             <p className="text-red-600 mt-6 mb-3">{error}</p>
-            <button
-              className="btn btn-neutral btn-sm w-40 mx-auto uppercase disabled:text-gray-500"
-              type="submit"
-              disabled={!stripe || !client_secret || loading || transactionId}
-            >
-              {loading ? (
-                <>
-                  Processing
-                  <div className="flex items-center justify-center">
-                    <div>
-                      <div className="w-6 h-6 border-t-4 border-b-4 border-neutral rounded-full animate-spin"></div>
+              <button
+                className="btn btn-neutral btn-sm w-40 mx-auto uppercase disabled:text-gray-500"
+                type="submit"
+                disabled={!stripe || !client_secret || loading || transactionId}
+              >
+                {loading ? (
+                  <>
+                    Processing
+                    <div className="flex items-center justify-center">
+                      <div>
+                        <div className="w-6 h-6 border-t-4 border-b-4 border-neutral rounded-full animate-spin"></div>
+                      </div>
                     </div>
-                  </div>
-                </>
-              ) : (
-                "Pay"
-              )}
-            </button>
+                  </>
+                ) : (
+                  "Pay"
+                )}
+              </button>
           </div>
         </form>
       </div>
