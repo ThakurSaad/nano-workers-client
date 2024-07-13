@@ -72,7 +72,13 @@ const ReviewTasksTable = ({
                 </td>
                 <td>
                   <button
-                    onClick={() => handleReject(submission._id)}
+                    onClick={() =>
+                      handleReject(
+                        submission._id,
+                        submission.worker_email,
+                        submission.task_title
+                      )
+                    }
                     className="btn btn-sm bg-red-700 hover:text-neutral text-white uppercase"
                   >
                     <FaTrash className="text-lg" />
@@ -84,7 +90,8 @@ const ReviewTasksTable = ({
                       handleApprove(
                         submission._id,
                         submission.payable_amount,
-                        submission.worker_email
+                        submission.worker_email,
+                        submission.task_title
                       )
                     }
                     className="btn btn-sm bg-green-700 hover:text-neutral text-white uppercase"

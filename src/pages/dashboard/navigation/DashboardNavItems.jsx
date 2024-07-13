@@ -1,4 +1,5 @@
 import {
+  FaBell,
   FaClipboardList,
   FaCoins,
   FaExchangeAlt,
@@ -37,6 +38,12 @@ const DashboardNavItems = () => {
         <NavLink to="/dashboard/profile">
           <FaUser className="text-lg" />
           Profile
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/dashboard/allNotifications">
+          <FaBell className="text-lg" />
+          All Notifications
         </NavLink>
       </li>
       {user.role === "worker" && (

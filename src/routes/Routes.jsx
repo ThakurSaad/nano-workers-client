@@ -24,6 +24,7 @@ import ManageTasks from "../pages/dashboard/admin/ManageTasks";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ForbiddenPage from "../pages/error/ForbiddenPage";
+import AllNotifications from "../pages/dashboard/common/AllNotifications";
 
 export const router = createBrowserRouter([
   {
@@ -70,6 +71,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "allNotifications",
+        element: (
+          <PrivateRoute>
+            <AllNotifications />
           </PrivateRoute>
         ),
       },

@@ -39,8 +39,9 @@ const TaskCreatorHome = () => {
   const updateStatusToDB = async (
     id,
     status,
-    payable_amount = 0,
-    worker_email = ""
+    payable_amount,
+    worker_email,
+    task_title
   ) => {
     try {
       const editedStatus = status === "rejected" ? "Reject" : "Approve";
@@ -55,11 +56,13 @@ const TaskCreatorHome = () => {
             id,
             status,
             coins: payable_amount,
-            email: worker_email,
+            worker_email,
+            task_title,
           };
 
           setLoading(true);
           const res = await axiosPrivate.patch("/submission", data);
+          console.log(res.data);
           setLoading(false);
           refetch();
 
@@ -120,12 +123,23 @@ const TaskCreatorHome = () => {
     );
   };
 
-  const handleApprove = async (id, payable_amount, worker_email) => {
-    await updateStatusToDB(id, "approved", payable_amount, worker_email);
+  const handleApprove = async (
+    id,
+    payable_amount,
+    worker_email,
+    task_title
+  ) => {
+    await updateStatusToDB(
+      id,
+      "approved",
+      payable_amount,
+      worker_email,
+      task_title
+    );
   };
 
-  const handleReject = async (id) => {
-    await updateStatusToDB(id, "rejected");
+  const handleReject = async (id, worker_email, task_title) => {
+    await updateStatusToDB(id, "rejected", 0, worker_email, task_title);
   };
 
   function sumFunction(arrayOfObject, propertyKeyStr) {
