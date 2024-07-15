@@ -109,7 +109,7 @@ const Slide = ({ title, titlePart, subHeading, subTitle, image, isActive }) => {
           transition={{ type: "spring", stiffness: 50, duration: 1 }}
         >
           <motion.h1
-            className="text-3xl md:text-5xl xl:text-7xl font-bold pt-6 lg:pt-0"
+            className="text-3xl md:text-5xl xl:text-7xl font-bold pt-6 md:pt-0"
             initial={{ x: "-100vw", opacity: 0 }}
             animate={
               isActive ? { x: 0, opacity: 1 } : { x: "-100vw", opacity: 0 }

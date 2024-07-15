@@ -1,6 +1,7 @@
 import Banner from "./Banner";
 import Featured from "./Featured";
 import HowItWorks from "./HowItWorks";
+import Partners from "./Partners";
 import Testimonials from "./Testimonials";
 import TopEarners from "./TopEarners";
 
@@ -12,6 +13,7 @@ const Home = () => {
         <Featured />
         <HowItWorks />
         <TopEarners />
+        <Partners />
         <Testimonials />
       </div>
     </section>

@@ -1,8 +1,18 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/nano-worker-logo.svg";
 import { BsList } from "react-icons/bs";
 import useLogout from "../hooks/useLogout";
 import useAuth from "../hooks/useAuth";
+import {
+  FaBriefcase,
+  FaHome,
+  FaInfoCircle,
+  FaPlayCircle,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaThLarge,
+  FaUserPlus,
+} from "react-icons/fa";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -11,27 +21,56 @@ const Navbar = () => {
   const menuItems = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink to="/">
+          <FaHome className="text-lg" />
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link>Watch Demo</Link>
+        <NavLink to="/home">
+          <FaPlayCircle className="text-lg" />
+          Watch Demo
+        </NavLink>
+      </li>
+      <li>
+        <a target="_blank" href="https://thakur-saad.web.app/">
+          <FaBriefcase className="text-lg" />
+          Portfolio
+        </a>
+      </li>
+      <li>
+        <NavLink to="/aboutUs">
+          <FaInfoCircle className="text-lg" />
+          About Us
+        </NavLink>
       </li>
       {user ? (
         <>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <NavLink to="/dashboard">
+              <FaThLarge className="text-lg" />
+              Dashboard
+            </NavLink>
           </li>
-          <li className="bg-customOrange rounded font-medium text-lg text-white lg:mr-4 my-1 lg:my-0 lg:px-4">
-            <button onClick={handleLogOut}>Logout</button>
+          <li>
+            <button onClick={handleLogOut}>
+              <FaSignOutAlt className="text-lg" />
+              Logout
+            </button>
           </li>
         </>
       ) : (
         <>
-          <li className="bg-customOrange rounded font-medium text-lg text-white lg:mr-4 my-1 lg:my-0 lg:px-4">
-            <Link to="/login">Login</Link>
+          <li>
+            <NavLink to="/login">
+              <FaSignInAlt className="text-lg" /> Login
+            </NavLink>
           </li>
-          <li className="bg-customOrange rounded font-medium text-lg text-white my-1 lg:my-0 lg:px-4">
-            <Link to="/register">Register</Link>
+          <li>
+            <NavLink to="/register">
+              <FaUserPlus className="text-lg" />
+              Register
+            </NavLink>
           </li>
         </>
       )}
@@ -40,7 +79,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="navbar fixed max-w-screen-2xl z-10 bg-white">
+      <div className="navbar fixed font-extrabold max-w-screen-2xl z-10 bg-white">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,12 +92,12 @@ const Navbar = () => {
               {menuItems}
             </ul>
           </div>
-          <Link>
+          <Link to="/">
             <img className="w-60" src={logo} alt="logo" />
           </Link>
         </div>
-        <div className="navbar-center xl:navbar-end hidden lg:flex">
-          <ul className="menu text-lg menu-horizontal px-1">{menuItems}</ul>
+        <div className="navbar-center hidden lg:flex">
+          <ul className="menu text-base menu-horizontal px-1">{menuItems}</ul>
         </div>
       </div>
     </nav>
