@@ -66,6 +66,7 @@ Please use these accounts to easily enjoy all the functionalities as there are a
 - axios
 - sweetalert2
 - @stripe/react-stripe-js @stripe/stripe-js
+- framer-motion
 
 ### TODO
 
