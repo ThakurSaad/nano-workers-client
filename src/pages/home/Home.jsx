@@ -1,4 +1,5 @@
 import Banner from "./Banner";
+import Blogs from "./Blogs";
 import Featured from "./Featured";
 import HowItWorks from "./HowItWorks";
 import Partners from "./Partners";
@@ -15,6 +16,7 @@ const Home = () => {
         <TopEarners />
         <Partners />
         <Testimonials />
+        <Blogs />
       </div>
     </section>
   );
