@@ -6,7 +6,7 @@ import NavProfile from "../common/NavProfile";
 const NavbarUpper = () => {
   return (
     <div>
-      <div className="navbar relative bg-orange-50 text-black">
+      <div className="navbar relative bg-gray-50 text-black">
         <div className="hidden xs:block flex-1 md:ml-5">
           <img className="w-60" src={logo} alt="logo" />
         </div>

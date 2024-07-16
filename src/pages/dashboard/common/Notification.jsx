@@ -21,7 +21,7 @@ const Notification = () => {
         tabIndex={3}
         onClick={() => setOpen(!open)}
       >
-        <FaBell className="text-5xl hover:scale-105 duration-75 bg-gray-50 border-2 rounded-full w-12 h-12 sm:w-14 sm:h-14 p-2 sm:p-3" />
+        <FaBell className="text-5xl hover:scale-105 duration-75 bg-white hover:shadow-md rounded-full w-12 h-12 sm:w-14 sm:h-14 p-2 sm:p-3" />
         {unreadNotifications.length ? (
           <div className="absolute -right-[15px] z-50 badge badge-sm sm:badge-md bg-red-600 text-white -ml-3">
             +{unreadNotifications.length}
