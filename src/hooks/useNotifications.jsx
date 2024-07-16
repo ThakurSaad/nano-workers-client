@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useUser from "./useUser";
 import useAxiosPrivate from "./useAxiosPrivate";
+import useAuth from "./useAuth";
 
 const useNotifications = () => {
   const { user } = useUser();
   const axiosPrivate = useAxiosPrivate();
+  const { user: firebaseUser } = useAuth();
 
   const {
     data: notifications = [],
@@ -17,7 +19,7 @@ const useNotifications = () => {
       // console.log(res.data); // shows array of objects as expected
       return res.data;
     },
-    enabled: !!user?.user_email,
+    enabled: !!firebaseUser?.email,
   });
   // console.log(notifications); // shows the string [object object]. also shows array of objects as expected. both is showing
   return { notifications, isLoading, refetch };

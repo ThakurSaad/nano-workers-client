@@ -67,6 +67,7 @@ Please use these accounts to easily enjoy all the functionalities as there are a
 - sweetalert2
 - @stripe/react-stripe-js @stripe/stripe-js
 - framer-motion
+- rc-collapse
 
 ### TODO
 

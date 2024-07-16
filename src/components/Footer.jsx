@@ -8,11 +8,17 @@ import {
 } from "react-icons/fa";
 import footerBg from "../assets/footerBg.svg";
 import { SiLeetcode } from "react-icons/si";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  const marginTop = location.pathname.includes("dashboard")
+    ? "mt-0"
+    : "mt-10 md:mt-20";
+
   return (
     <footer
-      className="footer p-5 md:p-10 text-base-content mt-10 md:mt-20"
+      className={`footer p-5 md:p-10 text-base-content ${marginTop}`}
       style={{
         backgroundImage: `url(${footerBg})`,
         backgroundSize: "cover",

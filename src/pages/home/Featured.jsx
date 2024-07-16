@@ -4,6 +4,7 @@ import { IoDocumentText } from "react-icons/io5";
 import { GiTeamIdea } from "react-icons/gi";
 import { LuWorkflow } from "react-icons/lu";
 import { SiGoogleanalytics } from "react-icons/si";
+import MotionRight from "../../components/MotionRight";
 
 const Featured = () => {
   const features = [
@@ -65,18 +66,25 @@ const Featured = () => {
           subHeading={"Unlock Productivity with These Key Features"}
         />
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
-        {features.map((feature) => (
-          <div key={feature._id} className={`${feature.bgColor} w-full p-4 rounded-3xl`}>
-            <div className="text-8xl bg-500 flex justify-center">
-              {feature.icon}
+
+      <MotionRight>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
+          {features.map((feature) => (
+            <div
+              key={feature._id}
+              className={`${feature.bgColor} w-full p-4 rounded-3xl`}
+            >
+              <div className="text-8xl bg-500 flex justify-center">
+                {feature.icon}
+              </div>
+              <h4 className="text-xl text-center font-semibold py-4">
+                {feature.title}
+              </h4>
+              <p>{feature.description}</p>
             </div>
-            <h4 className="text-xl text-center font-semibold py-4">{feature.title}</h4>
-            <p>{feature.description}</p>
-          </div>
-        ))}
-      </div>
-      <div></div>
+          ))}
+        </div>
+      </MotionRight>
     </section>
   );
 };

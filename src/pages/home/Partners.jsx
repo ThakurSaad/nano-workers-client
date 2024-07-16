@@ -14,6 +14,7 @@ import partner18 from "../../assets/home/partner-18.png";
 import partner19 from "../../assets/home/partner-19.png";
 import partner20 from "../../assets/home/partner-20.png";
 import SectionTitle from "../../components/SectionTitle";
+import MotionRight from "../../components/MotionRight";
 
 const Partners = () => {
   const partners = [
@@ -43,14 +44,12 @@ const Partners = () => {
           }
         />
       </div>
+
       <div className="grid justify-items-center grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
         {partners.map((partner, index) => (
-          <img
-            key={index}
-            src={partner}
-            alt="image"
-            className="rounded-full w-40 h-40"
-          />
+          <MotionRight key={index}>
+            <img src={partner} alt="image" className="rounded-full w-40 h-40" />
+          </MotionRight>
         ))}
       </div>
     </section>

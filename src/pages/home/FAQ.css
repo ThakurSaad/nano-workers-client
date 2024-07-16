@@ -1,0 +1,11 @@
+.rc-collapse-item {
+  max-width: 600px;
+  margin-top: 10px;
+}
+.rc-collapse-content-box {
+  max-width: 380px;
+}
+.rc-collapse-header-text {
+  font-size: 18px;
+  font-weight: 600;
+}

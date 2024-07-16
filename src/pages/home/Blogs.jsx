@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import Swal from "sweetalert2";
 import { FaAngleDoubleRight } from "react-icons/fa";
+import { useInView } from "framer-motion";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -32,6 +33,8 @@ const Blogs = () => {
 };
 
 const Blog = ({ blog }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
   const { title, description, writer_name, writer_photo_url, address } =
     blog || {};
 
@@ -44,12 +47,12 @@ const Blog = ({ blog }) => {
     Swal.fire({
       title: `${title}`,
       html: `
-            <div style="text-align: start;">
-                <p>By ${writer_name} </p>
-                </br>
-                <p>${description} </p>
-            </div>
-            `,
+        <div style="text-align: start;">
+           <p>By ${writer_name} </p>
+           </br>
+           <p>${description} </p>
+        </div>
+      `,
       imageUrl: `${writer_photo_url}`,
       imageWidth: 150,
       imageHeight: 150,
@@ -58,7 +61,15 @@ const Blog = ({ blog }) => {
   };
 
   return (
-    <div className="rounded-lg bg-gray-50 p-8">
+    <div
+      className="rounded-lg bg-gray-50 p-8"
+      ref={ref}
+      style={{
+        transform: isInView ? "none" : "translateY(200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s",
+      }}
+    >
       <div className="flex items-center text-gray-600 my-4">
         <img
           src={writer_photo_url}

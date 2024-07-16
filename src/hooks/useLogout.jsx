@@ -7,6 +7,7 @@ const useLogout = () => {
 
   const handleLogout = async () => {
     await logout();
+    localStorage.removeItem("access_token")
     navigate("/login");
   };
 
