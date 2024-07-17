@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import MotionRight from "../../components/MotionRight";
+import MotionYAxisDown from "../../components/MotionYAxisDown";
 
 const TopEarners = () => {
   const [workers, setWorkers] = useState([]);
@@ -25,7 +25,7 @@ const TopEarners = () => {
       <div className="text-center mt-10 md:mt-20 mb-10">
         <SectionTitle heading={"Workers of The Month"} />
       </div>
-      <MotionRight>
+      <MotionYAxisDown>
         {" "}
         <Swiper
           slidesPerView={1}
@@ -81,7 +81,7 @@ const TopEarners = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </MotionRight>
+      </MotionYAxisDown>
     </section>
   );
 };

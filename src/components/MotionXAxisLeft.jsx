@@ -1,21 +1,22 @@
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
-const MotionRight = ({ children }) => {
+const MotionXAxisLeft = ({ children }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   return (
-    <div
+    <section
       ref={ref}
       style={{
-        transform: isInView ? "none" : "translateY(200px)",
+        transform: isInView ? "none" : "translateX(-200px)",
         opacity: isInView ? 1 : 0,
-        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s",
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
       }}
     >
       {children}
-    </div>
+    </section>
   );
 };
-export default MotionRight;
+
+export default MotionXAxisLeft;

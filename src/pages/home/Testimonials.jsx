@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Keyboard, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import MotionRight from "../../components/MotionRight";
+import MotionYAxisDown from "../../components/MotionYAxisDown";
 
 const Testimonials = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -26,7 +26,7 @@ const Testimonials = () => {
           }
         />
       </div>
-      <MotionRight>
+      <MotionYAxisDown>
         <Swiper
           slidesPerView={1}
           autoplay={{
@@ -63,7 +63,7 @@ const Testimonials = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </MotionRight>
+      </MotionYAxisDown>
     </section>
   );
 };

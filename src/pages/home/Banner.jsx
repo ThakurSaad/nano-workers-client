@@ -1,4 +1,3 @@
-import SectionTitle from "../../components/SectionTitle";
 import bannerBg from "../../assets/home/banner-bg.png";
 import banner1 from "../../assets/home/banner-6.png";
 import banner2 from "../../assets/home/banner-7.png";
@@ -131,7 +130,9 @@ const Slide = ({ title, titlePart, subHeading, subTitle, image, isActive }) => {
               delay: 0.5,
             }}
           >
-            <SectionTitle subHeading={subHeading} />
+            <h3 className="text-xl md:text-2xl font-semibold mt-4">
+              {subHeading}
+            </h3>
           </motion.div>
           <motion.p
             initial={{ x: "-100vw", opacity: 0 }}

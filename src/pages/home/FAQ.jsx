@@ -4,7 +4,7 @@ import "./FAQ.css";
 
 import Collapse from "rc-collapse";
 import "rc-collapse/assets/index.css";
-import MotionRight from "../../components/MotionRight";
+import MotionYAxisDown from "../../components/MotionYAxisDown";
 
 const FAQ = () => {
   const items = [
@@ -70,7 +70,7 @@ const FAQ = () => {
           }
         />
       </div>
-      <MotionRight>
+      <MotionYAxisDown>
         <div className="md:flex md:justify-between items-center w-full">
           <img
             className="w-64 sm:w-80 lg:w-[500px] mx-auto"
@@ -87,7 +87,7 @@ const FAQ = () => {
             }}
           />
         </div>
-      </MotionRight>
+      </MotionYAxisDown>
     </section>
   );
 };

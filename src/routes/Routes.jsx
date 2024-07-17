@@ -25,6 +25,7 @@ import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
 import ForbiddenPage from "../pages/error/ForbiddenPage";
 import AllNotifications from "../pages/dashboard/common/AllNotifications";
+import AboutUs from "../pages/aboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "aboutUs",
+        element: <AboutUs />,
       },
       {
         path: "/login",

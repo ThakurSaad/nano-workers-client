@@ -4,7 +4,7 @@ import { IoDocumentText } from "react-icons/io5";
 import { GiTeamIdea } from "react-icons/gi";
 import { LuWorkflow } from "react-icons/lu";
 import { SiGoogleanalytics } from "react-icons/si";
-import MotionRight from "../../components/MotionRight";
+import MotionYAxisDown from "../../components/MotionYAxisDown";
 
 const Featured = () => {
   const features = [
@@ -67,7 +67,7 @@ const Featured = () => {
         />
       </div>
 
-      <MotionRight>
+      <MotionYAxisDown>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
           {features.map((feature) => (
             <div
@@ -84,7 +84,7 @@ const Featured = () => {
             </div>
           ))}
         </div>
-      </MotionRight>
+      </MotionYAxisDown>
     </section>
   );
 };
