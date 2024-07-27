@@ -31,7 +31,20 @@ const Banner = () => {
       subHeading:
         "We provide a seamless micro-tasking platform that connects task creators with workers for mutual benefit and success.",
     },
+    {
+      _id: "64bda8e28b6f1c5e7b1f4a24",
+      heading: "Our Values",
+      subHeading:
+        "At Nano Workers, we prioritize integrity, innovation, and inclusivity in everything we do.",
+    },
+    {
+      _id: "64bda8e28b6f1c5e7b1f4a25",
+      heading: "Our Vision",
+      subHeading:
+        "We envision a world where micro-tasking is a key driver of economic growth and individual empowerment.",
+    },
   ];
+
   const slidesImage = [
     {
       _id: "64bda8e28b6f1c5e7b1f4a14",

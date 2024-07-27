@@ -6,7 +6,7 @@ import NavbarUpper from "../pages/dashboard/navigation/NavbarUpper";
 const Dashboard = () => {
   return (
     <section className="max-w-screen-2xl mx-auto">
-      <div className="">
+      <div>
         <NavbarUpper />
       </div>
       <div className="drawer lg:drawer-open">

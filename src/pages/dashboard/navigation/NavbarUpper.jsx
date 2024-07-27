@@ -5,16 +5,16 @@ import NavProfile from "../common/NavProfile";
 
 const NavbarUpper = () => {
   return (
-    <div>
+    <section>
       <div className="navbar relative bg-gray-50 text-black">
         <div className="hidden xs:block flex-1 md:ml-5">
           <img className="w-60" src={logo} alt="logo" />
         </div>
         <div className="flex flex-grow justify-evenly xs:flex-none md:mr-5">
-          {/*navbar profile */}
+          {/* navbar profile */}
           <NavProfile />
 
-          {/* notification */}
+          {/* navbar notification */}
           <Notification />
 
           {/* navigation panel button for sm device */}
@@ -26,7 +26,7 @@ const NavbarUpper = () => {
           </label>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

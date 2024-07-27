@@ -7,13 +7,26 @@ const axiosPrivate = axios.create({
   baseURL: "https://nano-workers-server.vercel.app",
 });
 
+const getToken = () => {
+  return new Promise((resolve, reject) => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      resolve(token);
+    } else {
+      // Optionally handle the case where the token is not immediately available
+      reject("Token not found");
+    }
+  });
+};
+
 const useAxiosPrivate = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 
   axiosPrivate.interceptors.request.use(
-    function (config) {
-      const token = localStorage.getItem("access_token");
+    async function (config) {
+      const token = await getToken();
+
       config.headers.authorization = `Bearer ${token}`;
 
       return config;
